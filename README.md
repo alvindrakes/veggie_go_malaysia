@@ -1,16 +1,15 @@
 # veggie_go_malaysia
 
-A new Flutter project.
+A non-profit vegan society app that show all vegan / vegetarian friendly restaurants nearby.
 
-## Getting Started
+**App development rules to remember:**
 
-This project is a starting point for a Flutter application.
+1. The app should use “Flutter ScreenUtil” package to ensure the app design is consistent across all mobile devices.
 
-A few resources to get you started if this is your first Flutter project:
+2. The app will be developed using “Stacked” architecture.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+3. Support different localization (English / Chinese / your language of choice etc.)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Show “Platform specific widgets” for things like loading indicator, dialog popup, action sheets. (Using Flutter platform widget package)
+
+5. Font size will scale according to the device's accessibility setting “font size”.
