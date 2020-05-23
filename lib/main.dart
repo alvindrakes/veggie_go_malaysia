@@ -8,10 +8,10 @@ void main() {
   Logger.level = Level.info;
 
   setupLocator();
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
