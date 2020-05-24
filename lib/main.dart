@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Veggie Go Malaysia',
-      initialRoute: Routes.startupViewRoute,
+      initialRoute: Routes.homeViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: ThemeData(
