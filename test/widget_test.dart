@@ -9,5 +9,7 @@ void main() {
     Logger.level = Level.info;
     setupLocator();
     await tester.pumpWidget(App());
+
+    await tester.pumpAndSettle(const Duration(milliseconds: 200));
   });
 }
