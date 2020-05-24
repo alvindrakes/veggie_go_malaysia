@@ -8,5 +8,6 @@ void main() {
     await tester.pumpWidget(
       testableWidget(child: LocationSelector()),
     );
+    await tester.pumpWidget(testableWidget(child: FlagSelector()));
   });
 }
