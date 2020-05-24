@@ -20,4 +20,3 @@ notifications:
   slack:
     rooms:
     - opensourceflu-w4s5951:8301j0xeXARwLxeh6d3dDlQO#testing
-    - opensourceflu-w4s5951:8301j0xeXARwLxeh6d3dDlQO#flutter
