@@ -11,21 +11,17 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Container(
-            color: ThemeColors.background,
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
-                  child: _SearchBar(),
-                ),
-                _AnnouncementCarousel(),
-                _QuickSearch(),
-                _FilterResults(),
-                _ResultsListView(),
-              ],
-            ),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
+                child: _SearchBar(),
+              ),
+              _AnnouncementCarousel(),
+              _QuickSearch(),
+              _FilterResults(),
+              _ResultsListView(),
+            ],
           ),
         ),
       ),
@@ -106,9 +102,50 @@ class _AnnouncementCarousel extends StatelessWidget {
 }
 
 class _QuickSearch extends StatelessWidget {
+  static Widget _customIcon(Color color, String text) {
+    return SizedBox(
+      width: 220.w,
+      child: Column(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 80.w,
+            backgroundColor: color,
+          ),
+          SizedBox(height: 10.h),
+          Text(text),
+        ],
+      ),
+    );
+  }
+
+  final List<Widget> _quickIconsFirst = [
+    _customIcon(ThemeColors.searchBarIcon, 'Japanese'),
+    _customIcon(ThemeColors.searchBarIcon, 'Chinese'),
+    _customIcon(ThemeColors.searchBarIcon, 'Western'),
+    _customIcon(ThemeColors.searchBarIcon, 'Indian'),
+  ];
+  final List<Widget> _quickIconsSecond = [
+    _customIcon(ThemeColors.searchBarIcon, 'Korean'),
+    _customIcon(ThemeColors.searchBarIcon, 'Thai'),
+    _customIcon(ThemeColors.searchBarIcon, 'Mixed'),
+    _customIcon(ThemeColors.searchBarIcon, 'More'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: _quickIconsFirst,
+        ),
+        SizedBox(height: 40.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: _quickIconsSecond,
+        )
+      ],
+    );
   }
 }
 

@@ -16,6 +16,7 @@ dependencies:
   get_it: ^4.0.2
   flutter_screenutil: ^1.1.0
   logger: ^0.8.2
+  effective_dart: ^1.2.1
 
   cupertino_icons: ^0.1.3
 
