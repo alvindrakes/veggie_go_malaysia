@@ -5,9 +5,6 @@ import 'widget_wrapper.dart';
 
 void main() {
   testWidgets('testingLocationBar', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      testableWidget(child: LocationSelector()),
-    );
     await tester.pumpWidget(testableWidget(child: FlagSelector()));
   });
 }
