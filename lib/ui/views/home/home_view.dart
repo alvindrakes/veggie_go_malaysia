@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,17 +12,21 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
-                child: _SearchBar(),
-              ),
-              _AnnouncementCarousel(),
-              _QuickSearch(),
-              _FilterResults(),
-              _ResultsListView(),
-            ],
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 23.w),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
+                  child: _SearchBar(),
+                ),
+                _AnnouncementCarousel(),
+                _QuickSearch(),
+                _FilterResults(),
+                _ResultsListView(),
+              ],
+            ),
           ),
         ),
       ),
@@ -97,7 +102,21 @@ class _FlagSelector extends StatelessWidget {
 class _AnnouncementCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CarouselSlider(
+      items: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: ThemeColors.searchBarIcon,
+          ),
+        ),
+      ],
+      options: CarouselOptions(
+        autoPlay: true,
+        enableInfiniteScroll: false,
+        height: 500.h,
+      ),
+    );
   }
 }
 
@@ -133,18 +152,21 @@ class _QuickSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: _quickIconsFirst,
-        ),
-        SizedBox(height: 40.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: _quickIconsSecond,
-        )
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 50.h),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: _quickIconsFirst,
+          ),
+          SizedBox(height: 40.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: _quickIconsSecond,
+          )
+        ],
+      ),
     );
   }
 }
