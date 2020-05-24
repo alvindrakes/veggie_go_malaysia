@@ -18,4 +18,6 @@ cache:
   - "$HOME/.pub-cache"
 notifications:
   slack:
-    secure: b+w+ILTj0r2lykWJaUBdwY6vLqumMm1Fuf8pTPzZNNXFQBbcukxPnPNj4eOMnzLTMxhqdABhEi0eWiAamcZ4KzmeKAbSuo526NHDk0b/SjPsHxm0firjSbLN+7hQ6GxMckK+XwTE49k7SUOGGBDbMAhQkioluqGCCkdH9Gq7nbMzODHdaxzHe5QrGSgb5xwB/LYulcboff5Xv/SK+3TNMuq949hy1BdtaVCbypohEHGeXl7ZL1IW65UJ5dQ/C071ngJpFEK+dG0kyWMgSMWd9x4YPlybIB5EgU5o4Dd3ckf1Iabg2uS0RuE/R2LLbwwIOIQtcycM0maJtQoazOMPOe8V+ycx/7TiFVDx9WYN423FZzG3XCnqY1Teyf/1MxuhGd8nCkIPnn75fFgZzXb4OKesXT3Wi+UWi/qFftCf0vbA7sj5FebHVnuIT29YvTYQAPBsw6Ts/hDqHpuBmvWeq1AA7IPz6FMwW7L4p/kLe68JAXeQ2NnUIWtcqS/vz88yvgfFw8yfXrTRulOHhrcbe+BKKKAD6mavqI9HR0xxrclBKrN4JZm2yLH0PbiOrlxtOt0EYRCtgRasHQITk8ZME3LyPd0eRxqrcjJE05Nunghw/kQFevVSA8YSDwFyFapIxB55sVMD/4ufRBFuCl1w35K6f6alqHmPBU1V8H8VpYg=
+    rooms:
+    - opensourceflu-w4s5951:8301j0xeXARwLxeh6d3dDlQO#testing
+    - opensourceflu-w4s5951:8301j0xeXARwLxeh6d3dDlQO#flutter
