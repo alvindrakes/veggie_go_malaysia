@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
+import 'package:veggie_go_malaysia/ui/views/home/widgets/restaurant_card.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -13,13 +14,13 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 23.w),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 80.w),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
+                  padding: EdgeInsets.symmetric(vertical: 80.h),
                   child: _SearchBar(),
                 ),
                 _AnnouncementCarousel(),
@@ -74,7 +75,7 @@ class _AnnouncementCarousel extends StatelessWidget {
 class _QuickSearch extends StatelessWidget {
   static Widget _customIcon(Color color, String text) {
     return SizedBox(
-      width: 220.w,
+      width: 250.w,
       child: Column(
         children: <Widget>[
           CircleAvatar(
@@ -132,6 +133,6 @@ class _FilterResults extends StatelessWidget {
 class _ResultsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return RestaurantCard();
   }
 }

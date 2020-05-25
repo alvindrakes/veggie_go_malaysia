@@ -20,7 +20,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Veggie Go Malaysia',
 
-      // We can use both material and cupertino widgets now
+      // We can use both material and cupertino widgets now under CupertinoApp
       // https://medium.com/@sendtosaeed2/flutter-material-cupertino-make-together-a3d2d7849548
       localizationsDelegates: <LocalizationsDelegate<dynamic>>[
         DefaultMaterialLocalizations.delegate,
