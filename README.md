@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/alvindrakes/veggie_go_malaysia.svg?branch=master)](https://travis-ci.com/alvindrakes/veggie_go_malaysia)
+
 # veggie_go_malaysia
 
 A non-profit vegan society app that show all vegan / vegetarian friendly restaurants nearby.
