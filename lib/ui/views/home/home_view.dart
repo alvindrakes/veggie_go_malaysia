@@ -7,7 +7,8 @@ import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/restaurant_card.dart';
+
+import 'widgets/restaurant_card/restaurant_card.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -127,7 +128,57 @@ class _QuickSearch extends StatelessWidget {
 class _FilterResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 40.w),
+      child: Row(
+        children: <Widget>[
+          Text(
+            'Results',
+            style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Expanded(child: SizedBox()),
+          GestureDetector(
+            onTap: () {
+              //TODO tap to open dropdown filter menu
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: CupertinoColors.systemGrey6.withOpacity(0.5),
+                    spreadRadius: 4,
+                    blurRadius: 4,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 50.w),
+                child: Row(
+                  children: <Widget>[
+                    Text('Nearest'),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 20.w),
+          Icon(
+            Icons.filter_list,
+            color: ThemeColors.brightGreen,
+          )
+        ],
+      ),
+    );
   }
 }
 
