@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/restaurant_card.dart';
@@ -133,6 +134,11 @@ class _FilterResults extends StatelessWidget {
 class _ResultsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RestaurantCard();
+    return RestaurantCard(
+      restaurant: Restaurant(
+        name: 'sky avaenu',
+        address: 'new york street',
+      ),
+    );
   }
 }

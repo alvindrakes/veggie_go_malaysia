@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class _Wrapper extends StatelessWidget {
   final Widget child;
@@ -13,10 +14,22 @@ class _Wrapper extends StatelessWidget {
 }
 
 Widget testableWidget({Widget child}) {
-  return MediaQuery(
-    data: MediaQueryData(),
-    child: CupertinoApp(
-      home: Scaffold(body: _Wrapper(child)),
+  //For some readon widget tests only works after adding a default windows size
+  final TestWidgetsFlutterBinding binding =
+      TestWidgetsFlutterBinding.ensureInitialized();
+
+  binding.window.physicalSizeTestValue = Size(1200, 1980);
+  binding.window.devicePixelRatioTestValue = 1.0;
+
+  //-----------//
+
+  return Directionality(
+    textDirection: TextDirection.ltr,
+    child: MediaQuery(
+      data: MediaQueryData(),
+      child: CupertinoApp(
+        home: Scaffold(body: _Wrapper(child)),
+      ),
     ),
   );
 }

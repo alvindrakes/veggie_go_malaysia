@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:veggie_go_malaysia/core/datamodels/restaurant.dart';
+import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 
 void main() {
   group('instantiation', () {
