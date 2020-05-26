@@ -10,6 +10,7 @@ class Restaurant {
   final Map<String, dynamic> openingHours;
   final double latitude;
   final double longitude;
+
   final NetworkImage mainPhoto;
   // Calculate distance from user with a method
   double _distanceFromUser;
