@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 
 import 'restaurant_card_model.dart';
+import 'package:veggie_go_malaysia/utils/custom_extensions.dart';
 
 class RestaurantCard extends StatelessWidget {
   RestaurantCard({@required this.restaurant});
@@ -56,9 +57,10 @@ class RestaurantCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        restaurant.name.removeWhiteSpacesShowLength() == 0
-                            ? 'No name found'
-                            : restaurant.name,
+                        _showPresetTextOrData(
+                          restaurant.name,
+                          'No name found',
+                        ),
                         key: Key('restaurantName'),
                         style: TextStyle(
                           fontSize: 16,
@@ -68,9 +70,10 @@ class RestaurantCard extends StatelessWidget {
                         maxLines: 2,
                       ),
                       Text(
-                        restaurant.address.removeWhiteSpacesShowLength() == 0
-                            ? 'No address found'
-                            : restaurant.address,
+                        _showPresetTextOrData(
+                          restaurant.address,
+                          'No address found',
+                        ),
                         key: Key('restaurantAddress'),
                         style: TextStyle(fontSize: 12),
                         overflow: TextOverflow.ellipsis,
@@ -80,7 +83,10 @@ class RestaurantCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text(
-                            '10am to 3pm',
+                            _showPresetTextOrBusinessHours(
+                              restaurant.openingHours,
+                              ' - ',
+                            ),
                             key: Key('businessHours'),
                             style: TextStyle(fontSize: 12),
                             overflow: TextOverflow.ellipsis,
@@ -110,12 +116,24 @@ class RestaurantCard extends StatelessWidget {
       viewModelBuilder: () => RestaurantCardModel(),
     );
   }
-}
 
-extension StringExtension on String {
-  int removeWhiteSpacesShowLength() {
-    final processedText = replaceAll(RegExp(r'\s+\b|\b\s|\s|\b'), '');
+  String _showPresetTextOrData(String data, String presetText) {
+    if (data.isNullEmptyOrWhitespace) {
+      return presetText;
+    }
 
-    return processedText.length;
+    return data;
+  }
+
+  String _showPresetTextOrBusinessHours(
+      Map<String, dynamic> data, String presetText) {
+    final values = data.values.toList();
+
+    if ((values[0] as String).isNullEmptyOrWhitespace ||
+        (values[1] as String).isNullEmptyOrWhitespace) {
+      return presetText;
+    }
+
+    return '${values[0]} to ${values[1]}';
   }
 }

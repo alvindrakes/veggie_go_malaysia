@@ -13,10 +13,10 @@ void main() {
       restaurant: Restaurant(
         name: 'abc restaurant',
         address: '123, New York street',
-        // openingHours: {
-        //   'open': '10am',
-        //   'close': '5pm',
-        // },
+        openingHours: {
+          'open': '10am',
+          'close': '5pm',
+        },
       ),
     )));
 
@@ -26,7 +26,7 @@ void main() {
     // find Text widgets in card
     final restaurantName = find.text('abc restaurant');
     final address = find.text('123, New York street');
-    final businessHours = find.text('10am to 3pm');
+    final businessHours = find.text('10am to 5pm');
     final distanceFromUser = find.text('1.2km');
 
     // Use the `findsOneWidget` matcher provided by flutter_test to verify
@@ -37,7 +37,7 @@ void main() {
     expect(address, findsOneWidget);
   });
 
-  testWidgets('Preset text is shown if given data is just whitespace',
+  testWidgets('Preset text is shown if given data is empty | null',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       testableWidget(
@@ -45,10 +45,10 @@ void main() {
         restaurant: Restaurant(
           name: '  ',
           address: ' ',
-          // openingHours: {
-          //   'open': '10am',
-          //   'close': '5pm',
-          // },
+          openingHours: {
+            'open': '  ',
+            'close': ' ',
+          },
         ),
       )),
     );
@@ -58,7 +58,7 @@ void main() {
     final restaurantName = find.text('No name found');
 
     final address = find.text('No address found');
-    final businessHours = find.text('10am to 3pm');
+    final businessHours = find.text(' - ');
     final distanceFromUser = find.text('1.2km');
 
     expect(restaurantName, findsOneWidget);

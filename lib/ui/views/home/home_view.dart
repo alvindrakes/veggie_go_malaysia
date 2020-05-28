@@ -187,9 +187,12 @@ class _ResultsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RestaurantCard(
       restaurant: Restaurant(
-        name: 'sky avaenu',
-        address: 'new york street',
-      ),
+          name: 'sky avaenu',
+          address: 'new york street',
+          openingHours: {
+            'open': '  ',
+            'close': ' ',
+          }),
     );
   }
 }
