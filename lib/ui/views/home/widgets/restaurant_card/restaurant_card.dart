@@ -7,7 +7,8 @@ import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'restaurant_card_model.dart';
 
 class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({@required this.restaurant});
+  RestaurantCard({@required this.restaurant});
+
   final Restaurant restaurant;
 
   //TODO write widget test
@@ -55,7 +56,9 @@ class RestaurantCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        restaurant.name,
+                        restaurant.name.removeWhiteSpacesShowLength() == 0
+                            ? 'No name found'
+                            : restaurant.name,
                         key: Key('restaurantName'),
                         style: TextStyle(
                           fontSize: 16,
@@ -65,7 +68,9 @@ class RestaurantCard extends StatelessWidget {
                         maxLines: 2,
                       ),
                       Text(
-                        restaurant.address,
+                        restaurant.address.removeWhiteSpacesShowLength() == 0
+                            ? 'No address found'
+                            : restaurant.address,
                         key: Key('restaurantAddress'),
                         style: TextStyle(fontSize: 12),
                         overflow: TextOverflow.ellipsis,
@@ -104,5 +109,13 @@ class RestaurantCard extends StatelessWidget {
       ),
       viewModelBuilder: () => RestaurantCardModel(),
     );
+  }
+}
+
+extension StringExtension on String {
+  int removeWhiteSpacesShowLength() {
+    final processedText = replaceAll(RegExp(r'\s+\b|\b\s|\s|\b'), '');
+
+    return processedText.length;
   }
 }
