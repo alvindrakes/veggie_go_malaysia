@@ -221,6 +221,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
+<<<<<<< HEAD
   path_provider:
     dependency: transitive
     description:
@@ -244,6 +245,10 @@ packages:
     version: "1.0.2"
   pedantic:
     dependency: transitive
+=======
+  pedantic:
+    dependency: "direct dev"
+>>>>>>> 83538000616337e88756149619f60c17050fd179
     description:
       name: pedantic
       url: "https://pub.dartlang.org"

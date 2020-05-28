@@ -42,7 +42,7 @@ PageRoute unknownRoutePage(String routeName) => CupertinoPageRoute(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                 child: Text(
-                  routeName == "/"
+                  routeName == '/'
                       ? 'Initial route not found! \n did you forget to annotate your home page with @initial or @MaterialRoute(initial:true)?'
                       : 'Route name $routeName is not found!',
                   textAlign: TextAlign.center,
