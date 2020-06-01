@@ -12,7 +12,6 @@ class RestaurantCard extends StatelessWidget {
 
   final Restaurant restaurant;
 
-  //TODO write widget test
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<RestaurantCardModel>.reactive(
@@ -43,10 +42,11 @@ class RestaurantCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                          'assets/images/restaurant.jpg') //Placeholders.restaurantImage,
-                      ),
+                    fit: BoxFit.cover,
+                    image: restaurant.mainPhoto ??
+                        AssetImage('assets/images/empty_placeholder.jpg'),
+                    //Placeholders.restaurantImage,
+                  ),
                 ),
               ),
               Flexible(
