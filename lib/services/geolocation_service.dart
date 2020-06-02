@@ -12,9 +12,7 @@ class GeoLocationService {
 
   UserLocation get currentLocation => _currentLocation;
 
-  /*
-    First-cut bounding box (latitude & longitude ranges)
-   */
+  // First-cut bounding box (latitude & longitude ranges)
   Map<String, double> getBoundingCircle(
       double lat, double lng, double distanceKm) {
     const earthRadiusKm = 6317; // Should be enough accuracy
