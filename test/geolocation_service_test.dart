@@ -9,6 +9,7 @@ class MockLocation extends Mock implements Location {}
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final geolocationService = GeoLocationService();
+
   group('GeoLocationService', () {
     test(
         'returns a location if the service is enabled and permission is granted completes successfully',
@@ -50,6 +51,15 @@ void main() {
         userLocation,
         null,
       );
+    });
+  });
+
+  group('First-cut bounding box', () {
+    test('checks valid inputs', () {
+      var bounds = geolocationService.getBoundingCircle(
+          4.549170500000001, 101.1087441, 10);
+      expect(bounds['maxLat'], bounds['minLat']);
+      expect(bounds['maxLng'] - bounds['minLng'], 0.18197523076980815);
     });
   });
 }
