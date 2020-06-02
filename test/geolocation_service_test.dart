@@ -14,7 +14,6 @@ void main() {
         'returns a location if the service is enabled and permission is granted completes successfully',
         () async {
       final location = MockLocation();
-      geolocationService.location = location;
 
       when(location.serviceEnabled()).thenAnswer((_) async => true);
 
@@ -24,7 +23,7 @@ void main() {
       when(location.getLocation()).thenAnswer((_) async => LocationData.fromMap(
           {'latitude': -45.501690, 'longitude': -73.567253}));
 
-      var userLocation = await geolocationService.getLocation();
+      var userLocation = await geolocationService.getUserLocation(location);
       expect(
         userLocation.latitude,
         -45.501690,
@@ -32,6 +31,24 @@ void main() {
       expect(
         userLocation.longitude,
         -73.567253,
+      );
+    });
+
+    test('returns null if the location service permission is denied', () async {
+      final location = MockLocation();
+
+      when(location.serviceEnabled()).thenAnswer((_) async => true);
+
+      when(location.hasPermission())
+          .thenAnswer((_) async => PermissionStatus.denied);
+
+      when(location.getLocation()).thenAnswer((_) async => LocationData.fromMap(
+          {'latitude': -45.501690, 'longitude': -73.567253}));
+
+      var userLocation = await geolocationService.getUserLocation(location);
+      expect(
+        userLocation,
+        null,
       );
     });
   });

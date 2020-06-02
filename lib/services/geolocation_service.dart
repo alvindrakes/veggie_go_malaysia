@@ -4,9 +4,7 @@ import 'package:location/location.dart';
 import 'package:veggie_go_malaysia/datamodels/user_location.dart';
 
 class GeoLocationService {
-  Location location = Location();
-
-  Future<UserLocation> getLocation() async {
+  Future<UserLocation> getUserLocation(Location location) async {
     UserLocation currentLocation;
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
