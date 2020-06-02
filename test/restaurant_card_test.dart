@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:veggie_go_malaysia/app/locator.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/services/mock_image_test.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/restaurant_card/restaurant_card.dart';
@@ -7,6 +11,8 @@ import 'package:veggie_go_malaysia/ui/views/home/widgets/restaurant_card/restaur
 import 'widget_wrapper.dart';
 
 void main() {
+  setupLocator();
+
   testWidgets('Restaurant Card shows correct information given the right data',
       (WidgetTester tester) async {
     await provideMockedNetworkImages(() async {
@@ -21,6 +27,7 @@ void main() {
             'open': '10am',
             'close': '5pm',
           },
+          rating: 3.0,
         ),
       )));
     });
@@ -33,6 +40,8 @@ void main() {
     final address = find.text('123, New York street');
     final businessHours = find.text('10am to 5pm');
     final distanceFromUser = find.text('1.2km');
+    final mainPhoto = find.byKey(Key('restaurantPhoto'));
+    final ratingStar = find.byKey(Key('ratingStar'));
 
     // Use the `findsOneWidget` matcher provided by flutter_test to verify
     // that the Text widgets appear exactly once in the widget tree.
@@ -40,6 +49,8 @@ void main() {
     expect(businessHours, findsOneWidget);
     expect(distanceFromUser, findsOneWidget);
     expect(address, findsOneWidget);
+    expect(mainPhoto, findsOneWidget);
+    expect(ratingStar, findsOneWidget);
   });
 
   testWidgets('Preset text is shown if given data is empty | null',
@@ -55,6 +66,7 @@ void main() {
             'open': '  ',
             'close': ' ',
           },
+          rating: null,
         ),
       )),
     );
@@ -62,14 +74,17 @@ void main() {
     await tester.pumpAndSettle();
 
     final restaurantName = find.text('No name found');
-
+    final mainPhoto = find.byKey(Key('restaurantPhoto'));
     final address = find.text('No address found');
     final businessHours = find.text(' - ');
     final distanceFromUser = find.text('1.2km');
+    final ratingStar = find.byKey(Key('ratingStar'));
 
     expect(restaurantName, findsOneWidget);
     expect(address, findsOneWidget);
     expect(businessHours, findsOneWidget);
+    expect(mainPhoto, findsOneWidget);
     expect(distanceFromUser, findsOneWidget);
+    expect(ratingStar, findsOneWidget);
   });
 }

@@ -26,6 +26,7 @@ void main() {
   });
 
   group('distanceFromUser', () {
-    // TODO: once distanceFromUser() has been implemented
+    // 
+    
   });
 }

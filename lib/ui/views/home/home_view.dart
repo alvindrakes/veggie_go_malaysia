@@ -18,18 +18,19 @@ class HomeView extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 80.w),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 80.h),
-                  child: _SearchBar(),
-                ),
-                _AnnouncementCarousel(),
-                _QuickSearch(),
-                _FilterResults(),
-                _ResultsListView(),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 80.h),
+                    child: _SearchBar(),
+                  ),
+                  _AnnouncementCarousel(),
+                  _QuickSearch(),
+                  _FilterResults(),
+                  _ResultsListView(),
+                ],
+              ),
             ),
           ),
         ),
@@ -129,7 +130,7 @@ class _FilterResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 40.w),
+      padding: EdgeInsets.only(top: 40.w),
       child: Row(
         children: <Widget>[
           Text(
@@ -185,14 +186,25 @@ class _FilterResults extends StatelessWidget {
 class _ResultsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RestaurantCard(
-      restaurant: Restaurant(
-          name: 'sky avaenu',
-          address: 'new york street',
-          openingHours: {
+    return Column(
+      children: <Widget>[
+        RestaurantCard(
+          restaurant: Restaurant(name: '  ', address: '  ', openingHours: {
             'open': '  ',
             'close': ' ',
           }),
+        ),
+        RestaurantCard(
+          restaurant: Restaurant(
+              name: 'Sky Avenue',
+              address: 'New york City Yay',
+              rating: 5.0,
+              openingHours: {
+                'open': '12pm',
+                'close': '4pm ',
+              }),
+        ),
+      ],
     );
   }
 }

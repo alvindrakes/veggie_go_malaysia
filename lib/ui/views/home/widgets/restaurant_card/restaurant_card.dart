@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_screenutil/size_extension.dart';
+import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 
 import 'restaurant_card_model.dart';
@@ -17,11 +19,10 @@ class RestaurantCard extends StatelessWidget {
     return ViewModelBuilder<RestaurantCardModel>.reactive(
       onModelReady: (model) => model.calculateDistanceFromUser(),
       builder: (context, model, _) => GestureDetector(
-        onTap: () {
-          //TODO navigate to restaurant details view
-        },
+        onTap: () => model.navigateToRestaurantDetails(),
         child: Container(
-          height: ScreenUtil().setHeight(500),
+          margin: EdgeInsets.only(top: 70.h),
+          height: 500.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
             color: CupertinoColors.white,
@@ -37,21 +38,21 @@ class RestaurantCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
+                key: Key('restaurantPhoto'),
                 height: double.infinity,
-                width: ScreenUtil().setHeight(500),
+                width: 500.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: restaurant.mainPhoto ??
                         AssetImage('assets/images/empty_placeholder.jpg'),
-                    //Placeholders.restaurantImage,
                   ),
                 ),
               ),
               Flexible(
                 child: Padding(
-                  padding: EdgeInsets.all(ScreenUtil().setWidth(60.0)),
+                  padding: EdgeInsets.all(60.0.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,17 @@ class RestaurantCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
-                      //TODO start rating icons here
+                      SizedBox(
+                        key: Key('ratingStar'),
+                        child: SmoothStarRating(
+                          isReadOnly: true,
+                          allowHalfRating: true,
+                          starCount: 5,
+                          color: ThemeColors.brightGreen,
+                          borderColor: ThemeColors.brightGreen,
+                          rating: restaurant.rating ?? 0,
+                        ),
+                      ),
                       Row(
                         children: <Widget>[
                           Text(
