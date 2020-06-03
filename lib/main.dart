@@ -19,12 +19,29 @@ class App extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Veggie Go Malaysia',
-      initialRoute: Routes.homeViewRoute,
+
+      // We can use both material and cupertino widgets now under CupertinoApp
+      // https://medium.com/@sendtosaeed2/flutter-material-cupertino-make-together-a3d2d7849548
+      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ],
+      initialRoute: Routes.startupViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: CupertinoThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: ThemeColors.brightGreen,
+        barBackgroundColor: ThemeColors.background,
         scaffoldBackgroundColor: ThemeColors.background,
+        textTheme: CupertinoTextThemeData(
+          navActionTextStyle: TextStyle(
+            color: ThemeColors.brightGreen,
+          ),
+          navTitleTextStyle: TextStyle(
+            color: ThemeColors.brightGreen,
+          ),
+        ),
       ),
     );
   }
