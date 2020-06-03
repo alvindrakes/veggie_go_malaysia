@@ -16,8 +16,7 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RestaurantCardModel>.reactive(
-      onModelReady: (model) => model.calculateDistanceFromUser(),
+    return ViewModelBuilder<RestaurantCardModel>.nonReactive(
       builder: (context, model, _) => GestureDetector(
         onTap: () => model.navigateToRestaurantDetails(),
         child: Container(
@@ -50,76 +49,75 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(width: 40.w),
               Flexible(
-                child: Padding(
-                  padding: EdgeInsets.all(60.0.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        _showPresetTextOrData(
-                          restaurant.name,
-                          'No name found',
-                        ),
-                        key: Key('restaurantName'),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      _showPresetTextOrData(
+                        restaurant.name,
+                        'No name found',
                       ),
-                      Text(
-                        _showPresetTextOrData(
-                          restaurant.address,
-                          'No address found',
-                        ),
-                        key: Key('restaurantAddress'),
-                        style: TextStyle(fontSize: 12),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                      key: Key('restaurantName'),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
-                      SizedBox(
-                        key: Key('ratingStar'),
-                        child: SmoothStarRating(
-                          isReadOnly: true,
-                          allowHalfRating: true,
-                          starCount: 5,
-                          color: ThemeColors.brightGreen,
-                          borderColor: ThemeColors.brightGreen,
-                          rating: restaurant.rating ?? 0,
-                        ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    Text(
+                      _showPresetTextOrData(
+                        restaurant.address,
+                        'No address found',
                       ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            _showPresetTextOrBusinessHours(
-                              restaurant.openingHours,
-                              ' - ',
-                            ),
-                            key: Key('businessHours'),
-                            style: TextStyle(fontSize: 12),
-                            overflow: TextOverflow.ellipsis,
+                      key: Key('restaurantAddress'),
+                      style: TextStyle(fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    SizedBox(
+                      key: Key('ratingStar'),
+                      child: SmoothStarRating(
+                        isReadOnly: true,
+                        allowHalfRating: true,
+                        starCount: 5,
+                        color: ThemeColors.brightGreen,
+                        borderColor: ThemeColors.brightGreen,
+                        rating: restaurant.rating ?? 0,
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          _showPresetTextOrBusinessHours(
+                            restaurant.openingHours,
+                            ' - ',
                           ),
-                          const Expanded(child: SizedBox()),
-                          model.isBusy
-                              ? const SizedBox()
-                              : Text(
-                                  model.data,
-                                  key: Key('distanceFromUser'),
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
+                          key: Key('businessHours'),
+                          style: TextStyle(fontSize: 12),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const Spacer(),
+                        model.isBusy
+                            ? const SizedBox()
+                            : Text(
+                                '${restaurant.distanceFromUser.toStringAsFixed(1)}km',
+                                key: Key('distanceFromUser'),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
                                 ),
-                        ],
-                      )
-                    ],
-                  ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                      ],
+                    )
+                  ],
                 ),
-              )
+              ),
+              SizedBox(width: 40.w),
             ],
           ),
         ),

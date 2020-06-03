@@ -196,6 +196,8 @@ class _ResultsListView extends StatelessWidget {
         ),
         RestaurantCard(
           restaurant: Restaurant(
+              mainPhoto: NetworkImage(
+                  'https://z8e5v5j3.stackpathcdn.com/wp-content/uploads/2019/01/SkyAvenue-Food-Wow.jpg'),
               name: 'Sky Avenue',
               address: 'New york City Yay',
               rating: 5.0,

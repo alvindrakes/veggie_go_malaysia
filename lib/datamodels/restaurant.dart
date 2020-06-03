@@ -29,10 +29,9 @@ class Restaurant {
         assert(((latitude != null) && (longitude != null)) ||
             (address != null && address != ''));
 
-  //? datamodels class should only have toMap / fromMap functions, all other functions like distance from user
-  //? should be inside viewmodels instead ?
   double get distanceFromUser {
     // TODO: calculate distance using latitude and longitude
+    _distanceFromUser = 1.2;
     return _distanceFromUser;
   }
 }

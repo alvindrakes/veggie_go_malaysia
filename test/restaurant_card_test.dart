@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:veggie_go_malaysia/app/locator.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/services/mock_image_test.dart';
@@ -32,10 +29,6 @@ void main() {
       )));
     });
 
-    // wait for distanceCalculation in viewmodel to finish
-    await tester.pumpAndSettle();
-
-    // find Text widgets in card
     final restaurantName = find.text('abc restaurant');
     final address = find.text('123, New York street');
     final businessHours = find.text('10am to 5pm');
@@ -43,8 +36,6 @@ void main() {
     final mainPhoto = find.byKey(Key('restaurantPhoto'));
     final ratingStar = find.byKey(Key('ratingStar'));
 
-    // Use the `findsOneWidget` matcher provided by flutter_test to verify
-    // that the Text widgets appear exactly once in the widget tree.
     expect(restaurantName, findsOneWidget);
     expect(businessHours, findsOneWidget);
     expect(distanceFromUser, findsOneWidget);
@@ -70,8 +61,6 @@ void main() {
         ),
       )),
     );
-
-    await tester.pumpAndSettle();
 
     final restaurantName = find.text('No name found');
     final mainPhoto = find.byKey(Key('restaurantPhoto'));
