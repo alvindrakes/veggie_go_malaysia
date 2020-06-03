@@ -9,6 +9,8 @@ import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
 
+import '../../../constants/colors.dart';
+import 'widgets/quick_search.dart';
 import 'widgets/restaurant_card/restaurant_card.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,22 +18,35 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: ThemeColors.background,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 80.w),
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.h),
-                    child: _SearchBar(),
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  backgroundColor: ThemeColors.background,
+                  title: Column(
+                    children: <Widget>[
+                      SizedBox(height: 50.h),
+                      _SearchBar(model),
+                      SizedBox(height: 50.h),
+                    ],
                   ),
-                  _AnnouncementCarousel(),
-                  QuickSearch(),
-                  _FilterResults(),
-                  _ResultsListView(),
-                ],
-              ),
+                  pinned: true,
+                  floating: true,
+                  elevation: 0.0,
+                  expandedHeight: 220.h,
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    _AnnouncementCarousel(),
+                    QuickSearch(),
+                    _FilterResults(),
+                    _ResultsListView(),
+                  ]),
+                ),
+              ],
             ),
           ),
         ),
@@ -42,12 +57,14 @@ class HomeView extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
+  final HomeViewModel model;
+  _SearchBar(this.model);
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Expanded(child: LocationSelector()),
+        Expanded(child: LocationSelector(model)),
         SizedBox(width: 40.w),
         FlagSelector(),
       ],
