@@ -28,12 +28,6 @@ class App extends StatelessWidget {
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: CupertinoThemeData(
-        textTheme: CupertinoTextThemeData(
-          textStyle: TextStyle(
-            fontFamily: 'Lato',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
         primaryColor: ThemeColors.brightGreen,
         barBackgroundColor: ThemeColors.background,
         scaffoldBackgroundColor: ThemeColors.background,
@@ -43,6 +37,10 @@ class App extends StatelessWidget {
           ),
           navTitleTextStyle: TextStyle(
             color: ThemeColors.brightGreen,
+          ),
+          textStyle: TextStyle(
+            fontFamily: 'Lato',
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
