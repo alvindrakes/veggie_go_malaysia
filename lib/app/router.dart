@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_view.dart';
+import 'package:veggie_go_malaysia/ui/views/restaurant_details.dart/restaurant_details_view.dart';
 import 'package:veggie_go_malaysia/ui/views/startup/startup_view.dart';
 
 abstract class Routes {
   static const startupViewRoute = '/';
   static const homeViewRoute = '/home';
+  static const retaurantDetailsRoute = '/restaurant_details';
 }
 
 class Router {
@@ -19,6 +21,11 @@ class Router {
       case Routes.homeViewRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => HomeView(),
+          settings: settings,
+        );
+      case Routes.retaurantDetailsRoute:
+        return CupertinoPageRoute<dynamic>(
+          builder: (context) => RestaurantDetailsView(),
           settings: settings,
         );
       default:

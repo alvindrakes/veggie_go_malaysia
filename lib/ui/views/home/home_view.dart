@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
+
+import 'widgets/restaurant_card/restaurant_card.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -14,20 +17,21 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 23.w),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 80.h),
-                  child: _SearchBar(),
-                ),
-                _AnnouncementCarousel(),
-                QuickSearch(),
-                _FilterResults(),
-                _ResultsListView(),
-              ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 80.w),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 80.h),
+                    child: _SearchBar(),
+                  ),
+                  _AnnouncementCarousel(),
+                  QuickSearch(),
+                  _FilterResults(),
+                  _ResultsListView(),
+                ],
+              ),
             ),
           ),
         ),
@@ -75,13 +79,84 @@ class _AnnouncementCarousel extends StatelessWidget {
 class _FilterResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: EdgeInsets.only(top: 40.w),
+      child: Row(
+        children: <Widget>[
+          Text(
+            'Results',
+            style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Expanded(child: SizedBox()),
+          GestureDetector(
+            onTap: () {
+              //TODO tap to open dropdown filter menu
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: CupertinoColors.systemGrey6.withOpacity(0.5),
+                    spreadRadius: 4,
+                    blurRadius: 4,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 50.w),
+                child: Row(
+                  children: <Widget>[
+                    Text('Nearest'),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 20.w),
+          Icon(
+            Icons.filter_list,
+            color: ThemeColors.brightGreen,
+          )
+        ],
+      ),
+    );
   }
 }
 
 class _ResultsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: <Widget>[
+        RestaurantCard(
+          restaurant: Restaurant(name: '  ', address: '  ', openingHours: {
+            'open': '  ',
+            'close': ' ',
+          }),
+        ),
+        RestaurantCard(
+          restaurant: Restaurant(
+              mainPhoto: NetworkImage(
+                  'https://z8e5v5j3.stackpathcdn.com/wp-content/uploads/2019/01/SkyAvenue-Food-Wow.jpg'),
+              name: 'Sky Avenue',
+              address: 'New york City Yay',
+              rating: 5.0,
+              openingHours: {
+                'open': '12pm',
+                'close': '4pm ',
+              }),
+        ),
+      ],
+    );
   }
 }
