@@ -19,9 +19,6 @@ class App extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Veggie Go Malaysia',
-
-      // We can use both material and cupertino widgets now under CupertinoApp
-      // https://medium.com/@sendtosaeed2/flutter-material-cupertino-make-together-a3d2d7849548
       localizationsDelegates: <LocalizationsDelegate<dynamic>>[
         DefaultMaterialLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
@@ -40,6 +37,10 @@ class App extends StatelessWidget {
           ),
           navTitleTextStyle: TextStyle(
             color: ThemeColors.brightGreen,
+          ),
+          textStyle: TextStyle(
+            fontFamily: 'Lato',
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
