@@ -20,25 +20,28 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         backgroundColor: ThemeColors.background,
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 80.w),
-            child: CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  backgroundColor: ThemeColors.background,
-                  title: Column(
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: ThemeColors.background,
+                title: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
                     children: <Widget>[
                       SizedBox(height: 50.h),
                       _SearchBar(model),
                       SizedBox(height: 50.h),
                     ],
                   ),
-                  pinned: true,
-                  floating: true,
-                  elevation: 0.0,
-                  expandedHeight: 220.h,
                 ),
-                SliverList(
+                pinned: true,
+                floating: true,
+                elevation: 0.0,
+                expandedHeight: 220.h,
+              ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 80.w),
+                sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     _AnnouncementCarousel(),
                     QuickSearch(),
@@ -46,8 +49,8 @@ class HomeView extends StatelessWidget {
                     _ResultsListView(),
                   ]),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
