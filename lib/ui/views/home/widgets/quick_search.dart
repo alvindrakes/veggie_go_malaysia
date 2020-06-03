@@ -15,7 +15,10 @@ class QuickSearch extends StatelessWidget {
             backgroundColor: color,
           ),
           SizedBox(height: 10.h),
-          Text(text),
+          Text(
+            text,
+            style: TextStyle(fontWeight: FontWeight.w500, fontFamily: 'Roboto'),
+          ),
         ],
       ),
     );
