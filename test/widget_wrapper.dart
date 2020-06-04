@@ -13,10 +13,13 @@ class _Wrapper extends StatelessWidget {
 }
 
 Widget testableWidget({Widget child}) {
-  return MediaQuery(
-    data: MediaQueryData(),
-    child: CupertinoApp(
-      home: Scaffold(body: _Wrapper(child)),
+  return Directionality(
+    textDirection: TextDirection.ltr,
+    child: MediaQuery(
+      data: MediaQueryData(),
+      child: CupertinoApp(
+        home: Scaffold(body: _Wrapper(child)),
+      ),
     ),
   );
 }
