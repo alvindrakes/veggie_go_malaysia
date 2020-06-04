@@ -8,7 +8,7 @@ class MockFirestore implements DatabaseService {
   Future<List<Announcement>> getAnnouncements() async {
     return [
       Announcement(
-        title: 'Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul Volunteer devs release design overhaul',
+        title: 'Volunteer devs release design overhaul',
         previewContent: 'A team of global app developers have created this new app from scratch...',
         imageUrl: 'https://i.imgur.com/VTc14WS.png',
       ),
