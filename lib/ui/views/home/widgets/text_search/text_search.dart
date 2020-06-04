@@ -17,7 +17,7 @@ class _SearchViewState extends State<SearchView> {
       viewModelBuilder: () => SearchViewModel(),
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Column(
+                  child: Column(
             children: <Widget>[
               TextField(
                 autofocus: true,
@@ -29,12 +29,12 @@ class _SearchViewState extends State<SearchView> {
                       style: BorderStyle.none,
                     ),
                   ),
-                  fillColor: ThemeColors.searchBar,
+                  fillColor: Colors.white,
                   filled: true,
                   prefixIcon: Padding(
                     padding: EdgeInsets.only(left: 50.w),
                     child: GestureDetector(
-                      child: Icon(Icons.arrow_back, color: Colors.black54),
+                      child: Icon(Icons.arrow_back, color: ThemeColors.brightGreen),
                       onTap: () => model.pop(),
                     ),
                   ),

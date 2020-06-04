@@ -16,7 +16,7 @@ class _LocationSelectorState extends State<LocationSelector> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150.h,
+      height: 125.h,
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100.h),
