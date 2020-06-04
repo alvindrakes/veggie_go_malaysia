@@ -112,12 +112,12 @@ class _AnnouncementCarousel extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
-                        children: <Widget>[
-                          Text(item.title, style: TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w500, fontSize: 20,),),
-                          SizedBox(height: 25.h,),
-                          Text(item.previewContent),
-                        ],
-                      ),
+                          children: <Widget>[
+                            Text(item.title, style: TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w500, fontSize: 20,),),
+                            SizedBox(height: 25.h,),
+                            Text(item.previewContent, overflow: TextOverflow.clip,),
+                          ],
+                        ),
                     ),
                   ),
                   SizedBox(width: 20.w),
