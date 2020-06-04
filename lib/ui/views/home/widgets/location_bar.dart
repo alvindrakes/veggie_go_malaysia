@@ -7,7 +7,7 @@ class LocationSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: 130.h,
       child: TextField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(10.h),
