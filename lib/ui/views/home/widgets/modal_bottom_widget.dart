@@ -26,7 +26,7 @@ Widget ModalBottomWidget(BuildContext context) {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                //TODO:
+                //TODO: Add Functionalitu
               },
               child: _headerText('Apply', Alignment.topRight),
             ),
@@ -71,63 +71,55 @@ Widget ModalBottomWidget(BuildContext context) {
   );
 }
 
-Widget _openNowRow() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Text(
-        'Open now',
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16.0,
-          color: Color(0xFF000000),
-        ),
+Widget _headerText(String text, Alignment alignment) {
+  return Align(
+    alignment: alignment,
+    child: Text(
+      '$text',
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 17.0,
+        color: Color(0xFF000000),
       ),
-      Switch.adaptive(
-        value: true,
-        activeColor: ThemeColors.kActiveColor,
-        activeTrackColor: ThemeColors.kActiveTrackColor,
-        inactiveThumbColor: ThemeColors.kInactiveColor,
-        inactiveTrackColor: ThemeColors.kInactiveColor,
-        onChanged: (bool value) {
-          // TODO: Get the state and set Functionality
-        },
-      ),
-    ],
+    ),
   );
 }
 
-Widget _slider(BuildContext context) {
-  return SliderTheme(
-    data: SliderTheme.of(context).copyWith(
-        inactiveTrackColor: ThemeColors.kInactiveColor,
-        activeTrackColor: ThemeColors.kActiveTrackColor,
-        inactiveTickMarkColor: ThemeColors.kInactiveColor,
-        activeTickMarkColor: ThemeColors.kActiveTrackColor,
-        thumbColor: ThemeColors.kMainColor,
-        overlayColor: ThemeColors.kActiveTrackColor,
-        tickMarkShape: RoundSliderTickMarkShape(),
-        valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-        valueIndicatorColor: ThemeColors.kMainColor,
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
-        valueIndicatorTextStyle: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16.0,
-          color: Colors.white,
+Widget _appliedFiltersContainers(String text) {
+  return Container(
+    height: 120.h,
+    padding: EdgeInsets.all(30.w),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(60.w),
+      color: ThemeColors.kMainColor.withOpacity(0.3),
+    ),
+    child: Row(
+      children: <Widget>[
+        SizedBox(width: 10.w),
+        Text(
+          '$text',
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
+            color: Color(0xFF000000),
+          ),
         ),
-        trackHeight: 22.h),
-    child: Slider.adaptive(
-      value: height.toDouble(),
-      min: 0.0,
-      max: 50.0,
-      divisions: 10,
-      onChanged: (double newValue) {
-        // TODO: Get the state and set Functionality
-      },
-      label: '$height',
+        SizedBox(width: 30.w),
+        CircleAvatar(
+          radius: 30.w,
+          backgroundColor: ThemeColors.kMainColor,
+          child: Icon(
+            Icons.close,
+            size: 60.w,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(width: 10.w),
+      ],
     ),
   );
 }
@@ -208,56 +200,64 @@ Widget _uncheckedVendorTypeContainers(String text) {
   );
 }
 
-Widget _appliedFiltersContainers(String text) {
-  return Container(
-    height: 120.h,
-    padding: EdgeInsets.all(30.w),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(60.w),
-      color: ThemeColors.kMainColor.withOpacity(0.3),
-    ),
-    child: Row(
-      children: <Widget>[
-        SizedBox(width: 10.w),
-        Text(
-          '$text',
-          textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-            color: Color(0xFF000000),
-          ),
+Widget _slider(BuildContext context) {
+  return SliderTheme(
+    data: SliderTheme.of(context).copyWith(
+        inactiveTrackColor: ThemeColors.kInactiveColor,
+        activeTrackColor: ThemeColors.kActiveTrackColor,
+        inactiveTickMarkColor: ThemeColors.kInactiveColor,
+        activeTickMarkColor: ThemeColors.kActiveTrackColor,
+        thumbColor: ThemeColors.kMainColor,
+        overlayColor: ThemeColors.kActiveTrackColor,
+        tickMarkShape: RoundSliderTickMarkShape(),
+        valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+        valueIndicatorColor: ThemeColors.kMainColor,
+        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+        overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+        valueIndicatorTextStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16.0,
+          color: Colors.white,
         ),
-        SizedBox(width: 30.w),
-        CircleAvatar(
-          radius: 30.w,
-          backgroundColor: ThemeColors.kMainColor,
-          child: Icon(
-            Icons.close,
-            size: 60.w,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(width: 10.w),
-      ],
+        trackHeight: 22.h),
+    child: Slider.adaptive(
+      value: height.toDouble(),
+      min: 0.0,
+      max: 50.0,
+      divisions: 10,
+      onChanged: (double newValue) {
+        // TODO: Get the state and set Functionality
+      },
+      label: '$height',
     ),
   );
 }
 
-Widget _headerText(String text, Alignment alignment) {
-  return Align(
-    alignment: alignment,
-    child: Text(
-      '$text',
-      textAlign: TextAlign.center,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 17.0,
-        color: Color(0xFF000000),
+
+Widget _openNowRow() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: <Widget>[
+      Text(
+        'Open now',
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16.0,
+          color: Color(0xFF000000),
+        ),
       ),
-    ),
+      Switch.adaptive(
+        value: true,
+        activeColor: ThemeColors.kActiveColor,
+        activeTrackColor: ThemeColors.kActiveTrackColor,
+        inactiveThumbColor: ThemeColors.kInactiveColor,
+        inactiveTrackColor: ThemeColors.kInactiveColor,
+        onChanged: (bool value) {
+          // TODO: Get the state and set Functionality
+        },
+      ),
+    ],
   );
 }
-// }
