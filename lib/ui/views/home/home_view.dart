@@ -105,7 +105,7 @@ class _FilterResults extends HookViewModelWidget<HomeViewModel> {
                   child: Container(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: ModalBottomWidget(context)),
+                      child: ModalBottomWidget(context, viewModel)),
                 ),
               );
             },
