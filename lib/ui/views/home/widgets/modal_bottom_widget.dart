@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
+import '../home_viewmodel.dart';
 
-int height = 10;
 
 @override
-Widget ModalBottomWidget(BuildContext context) {
+Widget ModalBottomWidget(BuildContext context, HomeViewModel model) {
   return Container(
     height: 1520.h,
     color: Color(0xff757575),
@@ -61,7 +61,7 @@ Widget ModalBottomWidget(BuildContext context) {
             SizedBox(height: 40.h),
             _headerText('Distance', Alignment.topLeft),
             SizedBox(height: 80.h),
-             _slider(context),
+             _slider(context, model),
             SizedBox(height: 60.h),
             _openNowRow(),
           ],
@@ -200,7 +200,7 @@ Widget _uncheckedVendorTypeContainers(String text) {
   );
 }
 
-Widget _slider(BuildContext context) {
+Widget _slider(BuildContext context, HomeViewModel model) {
   return SliderTheme(
     data: SliderTheme.of(context).copyWith(
         inactiveTrackColor: ThemeColors.kInactiveColor,
@@ -221,14 +221,15 @@ Widget _slider(BuildContext context) {
         ),
         trackHeight: 22.h),
     child: Slider.adaptive(
-      value: height.toDouble(),
+      value: model.height.toDouble(),
       min: 0.0,
       max: 50.0,
       divisions: 10,
-      onChanged: (double newValue) {
+      onChanged: (value) {
         // TODO: Get the state and set Functionality
+        model.changeSlider(value);
       },
-      label: '$height',
+      label: '${model.height}',
     ),
   );
 }
