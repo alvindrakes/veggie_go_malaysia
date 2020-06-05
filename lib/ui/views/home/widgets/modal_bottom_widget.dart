@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
-import '../home_viewmodel.dart';
-
-// class ModalBottomWidget extends HookViewModelWidget<HomeViewModel> {
-//   ModalBottomWidget({Key key}) : super(key: key, reactive: false);
 
 int height = 10;
 
