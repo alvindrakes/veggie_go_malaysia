@@ -80,7 +80,7 @@ class _AnnouncementCarousel extends StatelessWidget {
 }
 
 class _FilterResults extends HookViewModelWidget<HomeViewModel> {
-  _FilterResults({Key key}) : super(key: key, reactive: true);
+  _FilterResults({Key key}) : super(key: key, reactive: false);
 
   @override
   Widget buildViewModelWidget(BuildContext context, HomeViewModel viewModel) {

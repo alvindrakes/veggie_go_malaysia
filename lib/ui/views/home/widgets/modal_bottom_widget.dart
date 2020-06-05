@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import '../home_viewmodel.dart';
 
-
 @override
 Widget ModalBottomWidget(BuildContext context, HomeViewModel model) {
   return Container(
@@ -61,7 +60,7 @@ Widget ModalBottomWidget(BuildContext context, HomeViewModel model) {
             SizedBox(height: 40.h),
             _headerText('Distance', Alignment.topLeft),
             SizedBox(height: 80.h),
-             _slider(context, model),
+            _slider(context, model),
             SizedBox(height: 60.h),
             _openNowRow(),
           ],
@@ -130,7 +129,7 @@ Widget _checkedVendorTypeContainers(String text) {
       children: <Widget>[
         GestureDetector(
           onTap: () {
-            // TODO:
+            // TODO: Add Functionality
           },
           child: Container(
             child: CircleAvatar(
@@ -166,7 +165,7 @@ Widget _uncheckedVendorTypeContainers(String text) {
       children: <Widget>[
         GestureDetector(
           onTap: () {
-            // TODO:
+            // TODO: Add Functionality
           },
           child: Container(
             child: CircleAvatar(
@@ -201,7 +200,6 @@ Widget _uncheckedVendorTypeContainers(String text) {
 }
 
 Widget _slider(BuildContext context, HomeViewModel model) {
-
   return SliderTheme(
     data: SliderTheme.of(context).copyWith(
         inactiveTrackColor: ThemeColors.kInactiveColor,
@@ -230,13 +228,12 @@ Widget _slider(BuildContext context, HomeViewModel model) {
         // TODO: Get the state and set Functionality
         model.changeSlider(value.toInt());
       },
-      label: '${model.height}',
+      label: '${model.height.toInt()}',
     ),
   );
 }
 
-
-Widget _openNowRow() {
+Widget _openNowRow(BuildContext context, HomeViewModel model) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
@@ -251,13 +248,14 @@ Widget _openNowRow() {
         ),
       ),
       Switch.adaptive(
-        value: true,
+        value: model.switching,
         activeColor: ThemeColors.kActiveColor,
         activeTrackColor: ThemeColors.kActiveTrackColor,
         inactiveThumbColor: ThemeColors.kInactiveColor,
         inactiveTrackColor: ThemeColors.kInactiveColor,
         onChanged: (bool value) {
-          // TODO: Get the state and set Functionality
+          // TODO: Add Functionality
+          model.changeSwitch(value);
         },
       ),
     ],
