@@ -4,7 +4,7 @@ import 'package:veggie_go_malaysia/datamodels/country.dart';
 class HomeViewModel extends BaseViewModel {
   Country selectedCountry = Country.country[0];
   int height = 10;
-  bool switching = false;
+  bool isSwitch = false;
 
   void changeCountry(value) {
     selectedCountry = value;
@@ -20,7 +20,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void changeSwitch(value) {
-   switching = !value;
+   isSwitch = value;
     notifyListeners();
   }
 }

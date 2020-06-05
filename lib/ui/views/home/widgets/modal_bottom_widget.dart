@@ -62,7 +62,7 @@ Widget ModalBottomWidget(BuildContext context, HomeViewModel model) {
             SizedBox(height: 80.h),
             _slider(context, model),
             SizedBox(height: 60.h),
-            _openNowRow(),
+            _openNowRow(model),
           ],
         ),
       ),
@@ -233,7 +233,7 @@ Widget _slider(BuildContext context, HomeViewModel model) {
   );
 }
 
-Widget _openNowRow(BuildContext context, HomeViewModel model) {
+Widget _openNowRow(HomeViewModel model) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
@@ -248,12 +248,12 @@ Widget _openNowRow(BuildContext context, HomeViewModel model) {
         ),
       ),
       Switch.adaptive(
-        value: model.switching,
+        value: model.isSwitch,
         activeColor: ThemeColors.kActiveColor,
         activeTrackColor: ThemeColors.kActiveTrackColor,
         inactiveThumbColor: ThemeColors.kInactiveColor,
         inactiveTrackColor: ThemeColors.kInactiveColor,
-        onChanged: (bool value) {
+        onChanged: (value) {
           // TODO: Add Functionality
           model.changeSwitch(value);
         },
