@@ -108,7 +108,6 @@ class _FilterResults extends HookViewModelWidget<HomeViewModel> {
                       child: ModalBottomWidget(context)),
                 ),
               );
-              //TODO tap to open dropdown filter menu
             },
             child: Container(
               decoration: BoxDecoration(
