@@ -201,6 +201,7 @@ Widget _uncheckedVendorTypeContainers(String text) {
 }
 
 Widget _slider(BuildContext context, HomeViewModel model) {
+
   return SliderTheme(
     data: SliderTheme.of(context).copyWith(
         inactiveTrackColor: ThemeColors.kInactiveColor,
@@ -227,7 +228,7 @@ Widget _slider(BuildContext context, HomeViewModel model) {
       divisions: 10,
       onChanged: (value) {
         // TODO: Get the state and set Functionality
-        model.changeSlider(value);
+        model.changeSlider(value.toInt());
       },
       label: '${model.height}',
     ),

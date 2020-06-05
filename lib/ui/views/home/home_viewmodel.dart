@@ -13,8 +13,8 @@ class HomeViewModel extends BaseViewModel {
     // TODO: Create additional Function to Use Value and Change the Operation.
   }
 
-  void changeSlider(value) {
-    height = value;
+  void changeSlider(int value) {
+   height = value;
     notifyListeners();
   }
 }
