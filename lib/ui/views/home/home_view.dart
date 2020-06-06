@@ -3,12 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
 
+import 'widgets/flag_selector.dart';
+import 'widgets/modal_bottom_widget.dart';
 import 'widgets/restaurant_card/restaurant_card.dart';
 
 class HomeView extends StatelessWidget {
@@ -47,9 +50,9 @@ class _SearchBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Expanded(child: LocationSelector()),
+        Expanded(flex: 4, child: LocationSelector()),
         SizedBox(width: 40.w),
-        FlagSelector(),
+        Expanded(flex: 1, child: FlagSelector()),
       ],
     );
   }
@@ -76,9 +79,11 @@ class _AnnouncementCarousel extends StatelessWidget {
   }
 }
 
-class _FilterResults extends StatelessWidget {
+class _FilterResults extends HookViewModelWidget<HomeViewModel> {
+  _FilterResults({Key key}) : super(key: key, reactive: false);
+
   @override
-  Widget build(BuildContext context) {
+  Widget buildViewModelWidget(BuildContext context, HomeViewModel viewModel) {
     return Padding(
       padding: EdgeInsets.only(top: 40.w),
       child: Row(
@@ -93,7 +98,16 @@ class _FilterResults extends StatelessWidget {
           const Expanded(child: SizedBox()),
           GestureDetector(
             onTap: () {
-              //TODO tap to open dropdown filter menu
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (BuildContext context) => SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: ModalBottomWidget(context, viewModel)),
+                ),
+              );
             },
             child: Container(
               decoration: BoxDecoration(

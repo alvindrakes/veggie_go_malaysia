@@ -41,14 +41,3 @@ class LocationSelector extends StatelessWidget {
     );
   }
 }
-
-class FlagSelector extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 120.w,
-      // TODO: flag selector widget
-      child: Image.asset('assets/images/MalaysiaFlag.png'),
-    );
-  }
-}
