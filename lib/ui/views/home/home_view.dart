@@ -29,7 +29,8 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    _AnnouncementCarousel(model.announcements),
+                    QuickSearch(),
+                    SizedBox(height: 20.h),
                   ]),
                 ),
               ),
@@ -37,9 +38,8 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    QuickSearch(),
-                    _FilterResults(),
-                    _ResultsListView(),
+                    SizedBox(height: 20.h),
+                    _AnnouncementCarousel(model.announcements),
                   ]),
                 ),
               ),
@@ -63,7 +63,13 @@ class _SearchBar extends StatelessWidget {
         children: <Widget>[
           Expanded(child: LocationSelector(model)),
           SizedBox(width: 40.w),
-          FlagSelector(),
+          IconButton(
+            icon: Icon(
+              Icons.sort,
+              color: ThemeColors.brightGreen,
+            ),
+            onPressed: () {},
+          ),
         ],
       ),
       pinned: true,

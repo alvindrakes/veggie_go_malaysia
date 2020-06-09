@@ -19,7 +19,7 @@ class _LocationSelectorState extends State<LocationSelector> {
       height: 125.h,
       child: FlatButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100.h),
+          borderRadius: BorderRadius.circular(20.h),
         ),
         color: ThemeColors.searchBar,
         splashColor: Colors.white,
@@ -31,15 +31,14 @@ class _LocationSelectorState extends State<LocationSelector> {
               children: <InlineSpan>[
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: Icon(Icons.search, color: ThemeColors.searchBarIcon),
+                  child: Icon(Icons.search, color: Colors.grey),
                 ),
                 WidgetSpan(
                   child: SizedBox(width: 15.w),
                 ),
                 TextSpan(
-                    text: 'Search for places...',
-                    style:
-                        TextStyle(fontFamily: 'Lato', color: Colors.black45)),
+                    text: 'Dishes, food types or places',
+                    style: TextStyle(fontFamily: 'Lato', color: Colors.grey)),
               ],
             ),
           ),
