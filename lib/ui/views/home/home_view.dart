@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                     style: TextStyle(
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w500,
-                        fontSize: 15,
+                        fontSize: 55.h,
                         color: Colors.black),
                     underline: Container(),
                     onChanged: (String newValue) {
@@ -85,6 +85,7 @@ class _HomeViewState extends State<HomeView> {
                         style: TextStyle(
                             fontFamily: 'Lato',
                             color: Colors.white,
+                            fontSize: 50.h,
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -94,13 +95,15 @@ class _HomeViewState extends State<HomeView> {
                     width: 20.w,
                   ),
                   Chip(
-                    backgroundColor: Colors.white,
+                    backgroundColor: ThemeColors.background,
                     label: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         'Stores',
                         style: TextStyle(
-                            fontFamily: 'Lato', color: ThemeColors.brightGreen),
+                            fontSize: 50.h,
+                            fontFamily: 'Lato',
+                            color: ThemeColors.brightGreen),
                       ),
                     ),
                   ),
@@ -201,7 +204,7 @@ class _AnnouncementCarousel extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: 55.h,
                             ),
                           ),
                           SizedBox(
@@ -209,8 +212,8 @@ class _AnnouncementCarousel extends StatelessWidget {
                           ),
                           Text(
                             item.previewContent,
-                            style: TextStyle(fontSize: 12),
-                            overflow: TextOverflow.clip,
+                            style: TextStyle(fontSize: 45.h),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),

@@ -16,7 +16,7 @@ class _LocationSelectorState extends State<LocationSelector> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125.h,
+      height: 150.h,
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.h),
@@ -31,14 +31,21 @@ class _LocationSelectorState extends State<LocationSelector> {
               children: <InlineSpan>[
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: Icon(Icons.search, color: Colors.grey),
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                    size: 80.h,
+                  ),
                 ),
                 WidgetSpan(
                   child: SizedBox(width: 15.w),
                 ),
                 TextSpan(
                     text: 'Dishes, food types or places',
-                    style: TextStyle(fontFamily: 'Lato', color: Colors.grey)),
+                    style: TextStyle(
+                        fontFamily: 'Lato',
+                        color: Colors.grey,
+                        fontSize: 50.h)),
               ],
             ),
           ),

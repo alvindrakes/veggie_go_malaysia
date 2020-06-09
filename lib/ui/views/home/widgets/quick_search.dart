@@ -16,7 +16,10 @@ class QuickSearch extends StatelessWidget {
           SizedBox(height: 10.h),
           Text(
             text,
-            style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato'),
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Lato',
+                fontSize: 45.h),
           ),
         ],
       ),
@@ -39,7 +42,7 @@ class QuickSearch extends StatelessWidget {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: 230.h,
+          height: 260.h,
           child: ListView.builder(
             itemCount: _quickIcons.length,
             scrollDirection: Axis.horizontal,
