@@ -24,23 +24,21 @@ class HomeView extends StatelessWidget {
         body: SafeArea(
           child: CustomScrollView(
             slivers: <Widget>[
-              SliverAppBar(
+              CupertinoSliverNavigationBar(
                 backgroundColor: ThemeColors.background,
-                title: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 50.h),
-                      _SearchBar(model),
-                      SizedBox(height: 50.h),
-                    ],
-                  ),
+                largeTitle: Row(
+                  children: <Widget>[
+                    Expanded(child: LocationSelector(model)),
+                    SizedBox(width: 40.w),
+                  ],
                 ),
-                pinned: true,
-                floating: true,
-                elevation: 0.0,
-                expandedHeight: 220.h,
+                trailing: FlagSelector(),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40.w, 20.h),
               ),
+              // pinned: true,
+              // floating: true,
+              // elevation: 0.0,
+              // expandedHeight: 220.h,
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
                 sliver: SliverList(
@@ -73,13 +71,16 @@ class _SearchBar extends StatelessWidget {
   _SearchBar(this.model);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Expanded(child: LocationSelector(model)),
-        SizedBox(width: 40.w),
-        FlagSelector(),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 40.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(child: LocationSelector(model)),
+          SizedBox(width: 20.w),
+          FlagSelector(),
+        ],
+      ),
     );
   }
 }
@@ -100,7 +101,12 @@ class _AnnouncementCarousel extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white,
-              boxShadow: [BoxShadow(blurRadius: 3, color: Colors.grey[200], offset: Offset(0, 2))],
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 3,
+                    color: Colors.grey[200],
+                    offset: Offset(0, 2))
+              ],
             ),
             child: Padding(
               padding: EdgeInsets.all(40.w),
@@ -113,8 +119,17 @@ class _AnnouncementCarousel extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
                         children: <Widget>[
-                          Text(item.title, style: TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w500, fontSize: 20,),),
-                          SizedBox(height: 25.h,),
+                          Text(
+                            item.title,
+                            style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25.h,
+                          ),
                           Text(item.previewContent),
                         ],
                       ),

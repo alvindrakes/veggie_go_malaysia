@@ -54,7 +54,7 @@ class FlagSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 130.w,
+      width: 140.w,
       // TODO: flag selector widget
       child: Image.asset('assets/images/MalaysiaFlag.png'),
     );
