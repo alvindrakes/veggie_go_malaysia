@@ -53,6 +53,7 @@ class _HomeViewState extends State<HomeView> {
                           style: TextStyle(
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.w500,
+                              fontSize: 15,
                               color: Colors.black),
                           underline: Container(),
                           onChanged: (String newValue) {
@@ -70,7 +71,38 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ],
                     ),
-                    Row(),
+                    Row(
+                      children: <Widget>[
+                        Chip(
+                          label: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Text(
+                              'Restaurants',
+                              style: TextStyle(
+                                  fontFamily: 'Lato',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          backgroundColor: ThemeColors.brightGreen,
+                        ),
+                        SizedBox(
+                          width: 20.w,
+                        ),
+                        Chip(
+                          backgroundColor: Colors.transparent,
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Stores',
+                              style: TextStyle(
+                                  fontFamily: 'Lato',
+                                  color: ThemeColors.brightGreen),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ]),
                 ),
               ),
