@@ -28,105 +28,105 @@ class _HomeViewState extends State<HomeView> {
       builder: (context, model, child) => Scaffold(
         backgroundColor: ThemeColors.background,
         body: SafeArea(
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 25.h),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    Row(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/logo.png',
-                          height: 100.h,
-                          width: 100.w,
-                        ),
-                        SizedBox(width: 30.w),
-                        DropdownButton<String>(
-                          value: dropdownValue,
-                          icon: Container(
-                            height: 25.h,
-                            child: Image.asset(
-                              'assets/images/arrow_down.png',
-                            ),
-                          ),
-                          style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                              color: Colors.black),
-                          underline: Container(),
-                          onChanged: (String newValue) {
-                            setState(() {
-                              dropdownValue = newValue;
-                            });
-                          },
-                          items: <String>['Malaysia', 'Singapore']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ],
+          child: CustomScrollView(slivers: <Widget>[
+            SliverAppBar(
+              elevation: 0,
+              floating: true,
+              backgroundColor: ThemeColors.background,
+              title: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 100.h,
+                    width: 100.w,
+                  ),
+                  SizedBox(width: 30.w),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: Container(
+                      height: 25.h,
+                      child: Image.asset(
+                        'assets/images/arrow_down.png',
+                      ),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Chip(
-                          label: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: Text(
-                              'Restaurants',
-                              style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          backgroundColor: ThemeColors.brightGreen,
-                        ),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Chip(
-                          backgroundColor: Colors.transparent,
-                          label: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Stores',
-                              style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  color: ThemeColors.brightGreen),
-                            ),
-                          ),
-                        ),
-                      ],
+                    style: TextStyle(
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                        color: Colors.black),
+                    underline: Container(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                    items: <String>['Malaysia', 'Singapore']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+            SliverAppBar(
+              pinned: true,
+              elevation: 0,
+              backgroundColor: ThemeColors.background,
+              title: Row(
+                children: <Widget>[
+                  Chip(
+                    label: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Text(
+                        'Restaurants',
+                        style: TextStyle(
+                            fontFamily: 'Lato',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  ]),
-                ),
+                    backgroundColor: ThemeColors.brightGreen,
+                  ),
+                  SizedBox(
+                    width: 20.w,
+                  ),
+                  Chip(
+                    backgroundColor: Colors.white,
+                    label: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Text(
+                        'Stores',
+                        style: TextStyle(
+                            fontFamily: 'Lato', color: ThemeColors.brightGreen),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              _SearchBar(model),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 80.w),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    QuickSearch(),
-                    SizedBox(height: 20.h),
-                  ]),
-                ),
+            ),
+            _SearchBar(model),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 80.w),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  QuickSearch(),
+                  SizedBox(height: 20.h),
+                ]),
               ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 80.w),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    SizedBox(height: 20.h),
-                    _AnnouncementCarousel(model.announcements),
-                  ]),
-                ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 80.w),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  SizedBox(height: 20.h),
+                  _AnnouncementCarousel(model.announcements),
+                ]),
               ),
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
@@ -155,7 +155,6 @@ class _SearchBar extends StatelessWidget {
         ],
       ),
       pinned: true,
-      floating: true,
       elevation: 0.0,
       expandedHeight: 220.h,
     );
