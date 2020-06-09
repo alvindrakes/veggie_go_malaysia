@@ -15,7 +15,13 @@ import '../../../constants/colors.dart';
 import 'widgets/quick_search.dart';
 import 'widgets/restaurant_card/restaurant_card.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String dropdownValue = 'Malaysia'; // TODO: handle in viewmodel instead
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -24,6 +30,50 @@ class HomeView extends StatelessWidget {
         body: SafeArea(
           child: CustomScrollView(
             slivers: <Widget>[
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 25.h),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    Row(
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/images/logo.png',
+                          height: 100.h,
+                          width: 100.w,
+                        ),
+                        SizedBox(width: 30.w),
+                        DropdownButton<String>(
+                          value: dropdownValue,
+                          icon: Container(
+                            height: 25.h,
+                            child: Image.asset(
+                              'assets/images/arrow_down.png',
+                            ),
+                          ),
+                          style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black),
+                          underline: Container(),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>['Malaysia', 'Singapore']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                    Row(),
+                  ]),
+                ),
+              ),
               _SearchBar(model),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
