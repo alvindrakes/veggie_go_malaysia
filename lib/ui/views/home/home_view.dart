@@ -24,21 +24,7 @@ class HomeView extends StatelessWidget {
         body: SafeArea(
           child: CustomScrollView(
             slivers: <Widget>[
-              CupertinoSliverNavigationBar(
-                backgroundColor: ThemeColors.background,
-                largeTitle: Row(
-                  children: <Widget>[
-                    Expanded(child: LocationSelector(model)),
-                    SizedBox(width: 40.w),
-                  ],
-                ),
-                trailing: FlagSelector(),
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40.w, 20.h),
-              ),
-              // pinned: true,
-              // floating: true,
-              // elevation: 0.0,
-              // expandedHeight: 220.h,
+              _SearchBar(model),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
                 sliver: SliverList(
@@ -71,16 +57,19 @@ class _SearchBar extends StatelessWidget {
   _SearchBar(this.model);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return SliverAppBar(
+      backgroundColor: ThemeColors.background,
+      title: Row(
         children: <Widget>[
           Expanded(child: LocationSelector(model)),
-          SizedBox(width: 20.w),
+          SizedBox(width: 40.w),
           FlagSelector(),
         ],
       ),
+      pinned: true,
+      floating: true,
+      elevation: 0.0,
+      expandedHeight: 220.h,
     );
   }
 }
