@@ -16,8 +16,9 @@ class _SearchViewState extends State<SearchView> {
     return ViewModelBuilder<SearchViewModel>.reactive(
       viewModelBuilder: () => SearchViewModel(),
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
-                  child: Column(
+          child: Column(
             children: <Widget>[
               TextField(
                 autofocus: true,
@@ -34,10 +35,16 @@ class _SearchViewState extends State<SearchView> {
                   prefixIcon: Padding(
                     padding: EdgeInsets.only(left: 50.w),
                     child: GestureDetector(
-                      child: Icon(Icons.arrow_back, color: ThemeColors.brightGreen),
+                      child: Icon(Icons.arrow_back,
+                          color: ThemeColors.brightGreen),
                       onTap: () => model.pop(),
                     ),
                   ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.grey[50],
                 ),
               ),
             ],
