@@ -146,9 +146,9 @@ class _SearchBar extends StatelessWidget {
           Expanded(child: LocationSelector(model)),
           SizedBox(width: 40.w),
           IconButton(
-            icon: Icon(
-              Icons.sort,
-              color: ThemeColors.brightGreen,
+            icon: Image.asset(
+              'assets/images/filter.png',
+              height: 70.h,
             ),
             onPressed: () {},
           ),
