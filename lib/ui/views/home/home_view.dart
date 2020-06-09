@@ -88,7 +88,7 @@ class _AnnouncementCarousel extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
@@ -103,7 +103,8 @@ class _AnnouncementCarousel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  Flexible(
+                    flex: 2,
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
@@ -113,19 +114,24 @@ class _AnnouncementCarousel extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.w500,
-                              fontSize: 20,
+                              fontSize: 16,
                             ),
                           ),
                           SizedBox(
                             height: 25.h,
                           ),
-                          Text(item.previewContent),
+                          Text(
+                            item.previewContent,
+                            style: TextStyle(fontSize: 12),
+                            overflow: TextOverflow.clip,
+                          ),
                         ],
                       ),
                     ),
                   ),
                   SizedBox(width: 20.w),
-                  Expanded(
+                  Flexible(
+                    flex: 1,
                     child: Container(
                       child: CachedNetworkImage(imageUrl: item.imageUrl),
                     ),
@@ -137,7 +143,7 @@ class _AnnouncementCarousel extends StatelessWidget {
         );
       },
       options: CarouselOptions(
-        height: 600.h,
+        height: 400.h,
         viewportFraction: 1,
         autoPlay: true,
         enableInfiniteScroll: false,
