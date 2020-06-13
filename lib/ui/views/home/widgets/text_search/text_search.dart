@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/text_search/text_search_viewmodel.dart';
@@ -21,9 +20,11 @@ class _SearchViewState extends State<SearchView> {
           child: Column(
             children: <Widget>[
               TextField(
+                style: TextStyle(fontSize: 18),
+                cursorColor: ThemeColors.brightGreen,
                 autofocus: true,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(60.h),
+                  contentPadding: EdgeInsets.all(20),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 0,
@@ -33,7 +34,7 @@ class _SearchViewState extends State<SearchView> {
                   fillColor: Colors.white,
                   filled: true,
                   prefixIcon: Padding(
-                    padding: EdgeInsets.only(left: 50.w),
+                    padding: EdgeInsets.only(left: 20, right: 15),
                     child: GestureDetector(
                       child: Icon(Icons.arrow_back,
                           color: ThemeColors.brightGreen),

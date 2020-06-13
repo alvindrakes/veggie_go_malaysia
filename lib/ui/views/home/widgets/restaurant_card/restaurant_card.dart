@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-
 import 'package:stacked/stacked.dart';
-import 'package:flutter_screenutil/size_extension.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
+import 'package:veggie_go_malaysia/utils/custom_extensions.dart';
 
 import 'restaurant_card_model.dart';
-import 'package:veggie_go_malaysia/utils/custom_extensions.dart';
 
 class RestaurantCard extends StatelessWidget {
   RestaurantCard({@required this.restaurant});
@@ -20,8 +18,8 @@ class RestaurantCard extends StatelessWidget {
       builder: (context, model, _) => GestureDetector(
         onTap: () => model.navigateToRestaurantDetails(),
         child: Container(
-          margin: EdgeInsets.only(top: 70.h),
-          height: 500.h,
+          margin: EdgeInsets.only(top: 70),
+          height: 500,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
             color: CupertinoColors.white,
@@ -39,7 +37,7 @@ class RestaurantCard extends StatelessWidget {
               Container(
                 key: Key('restaurantPhoto'),
                 height: double.infinity,
-                width: 500.h,
+                width: 500,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
@@ -49,7 +47,7 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 40.w),
+              SizedBox(width: 40),
               Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,7 +115,7 @@ class RestaurantCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40.w),
+              SizedBox(width: 40),
             ],
           ),
         ),

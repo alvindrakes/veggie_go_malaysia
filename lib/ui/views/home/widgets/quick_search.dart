@@ -1,25 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuickSearch extends StatelessWidget {
   static Widget _customIcon(Color color, String text, Image image) {
     return SizedBox(
-      width: 220.w,
+      width: 70,
       child: Column(
         children: <Widget>[
           CircleAvatar(
-            radius: 80.w,
+            radius: 30,
             child: image,
             backgroundColor: color,
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 5),
           Text(
             text,
             style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Lato',
-                fontSize: 45.h),
+                fontWeight: FontWeight.w500, fontFamily: 'Lato', fontSize: 12),
           ),
         ],
       ),
@@ -42,7 +39,7 @@ class QuickSearch extends StatelessWidget {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: 260.h,
+          height: 90,
           child: ListView.builder(
             itemCount: _quickIcons.length,
             scrollDirection: Axis.horizontal,

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/announcement.dart';
@@ -26,110 +25,107 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: ThemeColors.background,
         body: SafeArea(
-          child: CustomScrollView(slivers: <Widget>[
-            SliverAppBar(
-              elevation: 0,
-              floating: true,
-              backgroundColor: ThemeColors.background,
-              title: Row(
-                children: <Widget>[
-                  Image.asset(
-                    'assets/images/logo.png',
-                    height: 100.h,
-                    width: 100.w,
-                  ),
-                  SizedBox(width: 30.w),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: Container(
-                      height: 25.h,
-                      child: Image.asset(
-                        'assets/images/arrow_down.png',
-                      ),
+          child: Container(
+            color: ThemeColors.background,
+            child: CustomScrollView(slivers: <Widget>[
+              SliverAppBar(
+                elevation: 0,
+                floating: true,
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/images/logo.png',
+                      height: 35,
+                      width: 35,
                     ),
-                    style: TextStyle(
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 55.h,
-                        color: Colors.black),
-                    underline: Container(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                    },
-                    items: <String>['Malaysia', 'Singapore']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ],
+                    SizedBox(width: 10),
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: Container(
+                        height: 8,
+                        child: Image.asset(
+                          'assets/images/arrow_down.png',
+                        ),
+                      ),
+                      style: TextStyle(
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.black),
+                      underline: Container(),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>['Malaysia', 'Singapore']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SliverAppBar(
-              pinned: true,
-              elevation: 0,
-              backgroundColor: ThemeColors.background,
-              title: Row(
-                children: <Widget>[
-                  Chip(
-                    label: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Text(
-                        'Restaurants',
-                        style: TextStyle(
-                            fontFamily: 'Lato',
-                            color: Colors.white,
-                            fontSize: 50.h,
-                            fontWeight: FontWeight.w600),
+              SliverAppBar(
+                pinned: true,
+                elevation: 0,
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: <Widget>[
+                    Chip(
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'Restaurants',
+                          style: TextStyle(
+                              fontFamily: 'Lato',
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
+                      backgroundColor: ThemeColors.brightGreen,
                     ),
-                    backgroundColor: ThemeColors.brightGreen,
-                  ),
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Chip(
-                    backgroundColor: ThemeColors.background,
-                    label: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Text(
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Chip(
+                      backgroundColor: Colors.white,
+                      label: Text(
                         'Stores',
                         style: TextStyle(
-                            fontSize: 50.h,
+                            fontSize: 14,
                             fontFamily: 'Lato',
                             color: ThemeColors.brightGreen),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            _SearchBar(model),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 80.w),
-              sliver: SliverList(
+              _SearchBar(model),
+              SliverList(
                 delegate: SliverChildListDelegate([
+                  SizedBox(height: 20),
                   QuickSearch(),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 10),
                 ]),
               ),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 80.w),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  SizedBox(height: 20.h),
-                  _AnnouncementCarousel(model.announcements),
-                ]),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    SizedBox(height: 10),
+                    _AnnouncementCarousel(model.announcements),
+                  ]),
+                ),
               ),
-            ),
-          ]),
+            ]),
+          ),
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
@@ -143,15 +139,15 @@ class _SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: ThemeColors.background,
+      backgroundColor: Colors.white,
       title: Row(
         children: <Widget>[
           Expanded(child: LocationSelector(model)),
-          SizedBox(width: 40.w),
+          SizedBox(width: 10),
           IconButton(
             icon: Image.asset(
               'assets/images/filter.png',
-              height: 70.h,
+              height: 20,
             ),
             onPressed: () {},
           ),
@@ -159,7 +155,7 @@ class _SearchBar extends StatelessWidget {
       ),
       pinned: true,
       elevation: 0.0,
-      expandedHeight: 220.h,
+      expandedHeight: 60,
     );
   }
 }
@@ -175,7 +171,7 @@ class _AnnouncementCarousel extends StatelessWidget {
       itemBuilder: (BuildContext context, int itemIndex) {
         var item = announcements[itemIndex];
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -188,7 +184,7 @@ class _AnnouncementCarousel extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: EdgeInsets.all(40.w),
+              padding: EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -196,30 +192,30 @@ class _AnnouncementCarousel extends StatelessWidget {
                   Flexible(
                     flex: 2,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
                         children: <Widget>[
                           Text(
                             item.title,
                             style: TextStyle(
                               fontFamily: 'Lato',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 55.h,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
                           ),
                           SizedBox(
-                            height: 25.h,
+                            height: 5,
                           ),
                           Text(
                             item.previewContent,
-                            style: TextStyle(fontSize: 45.h),
-                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 14),
+                            overflow: TextOverflow.clip,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(width: 20.w),
+                  SizedBox(width: 5),
                   Flexible(
                     flex: 1,
                     child: Container(
@@ -233,7 +229,7 @@ class _AnnouncementCarousel extends StatelessWidget {
         );
       },
       options: CarouselOptions(
-        height: 400.h,
+        height: 130,
         viewportFraction: 1,
         autoPlay: true,
         enableInfiniteScroll: false,
@@ -241,63 +237,6 @@ class _AnnouncementCarousel extends StatelessWidget {
         autoPlayAnimationDuration: Duration(milliseconds: 500),
         enlargeCenterPage: true,
         reverse: false,
-      ),
-    );
-  }
-}
-
-class _FilterResults extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 40.w),
-      child: Row(
-        children: <Widget>[
-          Text(
-            'Results',
-            style: TextStyle(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const Expanded(child: SizedBox()),
-          GestureDetector(
-            onTap: () {
-              //TODO tap to open dropdown filter menu
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: CupertinoColors.systemGrey6.withOpacity(0.5),
-                    spreadRadius: 4,
-                    blurRadius: 4,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 50.w),
-                child: Row(
-                  children: <Widget>[
-                    Text('Nearest'),
-                    Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 20.w),
-          Icon(
-            Icons.filter_list,
-            color: ThemeColors.brightGreen,
-          )
-        ],
       ),
     );
   }

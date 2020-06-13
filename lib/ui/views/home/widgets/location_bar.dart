@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 
@@ -16,10 +15,10 @@ class _LocationSelectorState extends State<LocationSelector> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150.h,
+      height: 40,
       child: FlatButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.h),
+          borderRadius: BorderRadius.circular(5),
         ),
         color: ThemeColors.searchBar,
         splashColor: Colors.white,
@@ -34,35 +33,22 @@ class _LocationSelectorState extends State<LocationSelector> {
                   child: Icon(
                     Icons.search,
                     color: Colors.grey,
-                    size: 80.h,
+                    size: 20,
                   ),
                 ),
                 WidgetSpan(
-                  child: SizedBox(width: 15.w),
+                  child: SizedBox(width: 7),
                 ),
                 TextSpan(
                     text: 'Dishes, food types or places',
                     style: TextStyle(
-                        fontFamily: 'Lato',
-                        color: Colors.grey,
-                        fontSize: 50.h)),
+                        fontFamily: 'Lato', color: Colors.grey, fontSize: 13)),
               ],
             ),
           ),
         ),
         textColor: Colors.black45,
       ),
-    );
-  }
-}
-
-class FlagSelector extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 140.w,
-      // TODO: flag selector widget
-      child: Image.asset('assets/images/MalaysiaFlag.png'),
     );
   }
 }
