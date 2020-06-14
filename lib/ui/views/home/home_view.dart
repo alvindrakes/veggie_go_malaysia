@@ -2,17 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/datamodels/announcement.dart';
-import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
 
 import '../../../constants/colors.dart';
 import 'widgets/quick_search.dart';
-import 'widgets/restaurant_card/restaurant_card.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -25,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Container(
             color: ThemeColors.background,
@@ -46,7 +46,7 @@ class _HomeViewState extends State<HomeView> {
                       icon: Container(
                         height: 8,
                         child: Image.asset(
-                          'assets/images/arrow_down.png',
+                          'assets/icons/arrow_down.png',
                         ),
                       ),
                       style: TextStyle(
@@ -110,19 +110,23 @@ class _HomeViewState extends State<HomeView> {
               _SearchBar(model),
               SliverList(
                 delegate: SliverChildListDelegate([
-                  SizedBox(height: 20),
+                  SizedBox(height: 15),
                   QuickSearch(),
-                  SizedBox(height: 10),
                 ]),
               ),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     _AnnouncementCarousel(model.announcements),
                   ]),
                 ),
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  _ResultsListView(),
+                ]),
               ),
             ]),
           ),
@@ -146,7 +150,7 @@ class _SearchBar extends StatelessWidget {
           SizedBox(width: 10),
           IconButton(
             icon: Image.asset(
-              'assets/images/filter.png',
+              'assets/icons/filter.png',
               height: 20,
             ),
             onPressed: () {},
@@ -208,7 +212,7 @@ class _AnnouncementCarousel extends StatelessWidget {
                           ),
                           Text(
                             item.previewContent,
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 14, fontFamily: 'Lato'),
                             overflow: TextOverflow.clip,
                           ),
                         ],
@@ -247,24 +251,74 @@ class _ResultsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        RestaurantCard(
-          restaurant: Restaurant(name: '  ', address: '  ', openingHours: {
-            'open': '  ',
-            'close': ' ',
-          }),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: <Widget>[
+              Text(
+                'Nearest to You',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato'),
+              ),
+              Spacer(),
+              Image.asset(
+                'assets/icons/arrow_right.png',
+                height: 14,
+              ),
+              SizedBox(width: 5),
+            ],
+          ),
         ),
-        RestaurantCard(
-          restaurant: Restaurant(
-              mainPhoto: NetworkImage(
-                  'https://z8e5v5j3.stackpathcdn.com/wp-content/uploads/2019/01/SkyAvenue-Food-Wow.jpg'),
-              name: 'Sky Avenue',
-              address: 'New york City Yay',
-              rating: 5.0,
-              openingHours: {
-                'open': '12pm',
-                'close': '4pm ',
-              }),
+        SizedBox(
+          height: 200,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return index == 3
+                    ? Container(
+                        width: 150,
+                        child: Material(
+                          color: ThemeColors.background,
+                          child: Center(
+                            child: Ink(
+                              decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: CircleBorder(),
+                                  shadows: [
+                                    BoxShadow(
+                                        blurRadius: 3,
+                                        color: Colors.grey[200],
+                                        spreadRadius: 1,
+                                        offset: Offset(0, 2))
+                                  ]),
+                              child: IconButton(
+                                icon: Image.asset(
+                                  'assets/icons/arrow_right.png',
+                                  width: 20,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Container(
+                          color: Colors.red,
+                          width: 210,
+                        ),
+                      );
+              },
+              itemCount: 4,
+            ),
+          ),
         ),
+        Row(),
       ],
     );
   }
