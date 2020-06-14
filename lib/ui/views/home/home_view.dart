@@ -1,162 +1,141 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/datamodels/restaurant.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
+import 'package:veggie_go_malaysia/ui/views/home/widgets/announcement.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
+import 'package:veggie_go_malaysia/ui/views/home/widgets/results_list.dart';
+import 'package:veggie_go_malaysia/ui/views/home/widgets/search_bar.dart';
 
-import 'widgets/restaurant_card/restaurant_card.dart';
+import '../../../constants/colors.dart';
+import 'widgets/quick_search.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String dropdownValue = 'Malaysia'; // TODO: handle in viewmodel instead
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 80.w),
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.h),
-                    child: _SearchBar(),
-                  ),
-                  _AnnouncementCarousel(),
-                  QuickSearch(),
-                  _FilterResults(),
-                  _ResultsListView(),
-                ],
+          child: Container(
+            color: ThemeColors.background,
+            child: CustomScrollView(slivers: <Widget>[
+              SliverAppBar(
+                elevation: 0,
+                floating: true,
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/images/logo.png',
+                      height: 35,
+                      width: 35,
+                    ),
+                    SizedBox(width: 10),
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: Container(
+                        height: 8,
+                        child: Image.asset(
+                          'assets/icons/arrow_down.png',
+                        ),
+                      ),
+                      style: TextStyle(
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.black),
+                      underline: Container(),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>['Malaysia', 'Singapore']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
               ),
-            ),
+              SliverAppBar(
+                pinned: true,
+                elevation: 0,
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: <Widget>[
+                    Chip(
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'Restaurants',
+                          style: TextStyle(
+                              fontFamily: 'Lato',
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      backgroundColor: ThemeColors.brightGreen,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Chip(
+                      backgroundColor: Colors.white,
+                      label: Text(
+                        'Stores',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: ThemeColors.brightGreen),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SearchBar(model),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  SizedBox(height: 15),
+                  QuickSearch(),
+                ]),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    SizedBox(height: 5),
+                    AnnouncementCarousel(model.announcements),
+                  ]),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  ResultsListView('Nearest to You', model.nearestPlaces),
+                  ResultsListView('Recommended', model.recommendedPlaces),
+                  ResultsListView('Popular among users', model.popularPlaces),
+                  ResultsListView('Budget options', model.budgetPlaces),
+                ]),
+              ),
+            ]),
           ),
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
-    );
-  }
-}
-
-class _SearchBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Expanded(child: LocationSelector()),
-        SizedBox(width: 40.w),
-        FlagSelector(),
-      ],
-    );
-  }
-}
-
-class _AnnouncementCarousel extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CarouselSlider(
-      items: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: ThemeColors.searchBarIcon,
-          ),
-        ),
-      ],
-      options: CarouselOptions(
-        autoPlay: true,
-        enableInfiniteScroll: false,
-        height: 500.h,
-      ),
-    );
-  }
-}
-
-class _FilterResults extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 40.w),
-      child: Row(
-        children: <Widget>[
-          Text(
-            'Results',
-            style: TextStyle(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const Expanded(child: SizedBox()),
-          GestureDetector(
-            onTap: () {
-              //TODO tap to open dropdown filter menu
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: CupertinoColors.systemGrey6.withOpacity(0.5),
-                    spreadRadius: 4,
-                    blurRadius: 4,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 50.w),
-                child: Row(
-                  children: <Widget>[
-                    Text('Nearest'),
-                    Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 20.w),
-          Icon(
-            Icons.filter_list,
-            color: ThemeColors.brightGreen,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _ResultsListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        RestaurantCard(
-          restaurant: Restaurant(name: '  ', address: '  ', openingHours: {
-            'open': '  ',
-            'close': ' ',
-          }),
-        ),
-        RestaurantCard(
-          restaurant: Restaurant(
-              mainPhoto: NetworkImage(
-                  'https://z8e5v5j3.stackpathcdn.com/wp-content/uploads/2019/01/SkyAvenue-Food-Wow.jpg'),
-              name: 'Sky Avenue',
-              address: 'New york City Yay',
-              rating: 5.0,
-              openingHours: {
-                'open': '12pm',
-                'close': '4pm ',
-              }),
-        ),
-      ],
+      onModelReady: (model) => model.futureToRun(),
     );
   }
 }

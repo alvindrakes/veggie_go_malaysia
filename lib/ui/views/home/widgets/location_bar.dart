@@ -1,54 +1,54 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 
-class LocationSelector extends StatelessWidget {
+class LocationSelector extends StatefulWidget {
+  final HomeViewModel model;
+  LocationSelector(this.model);
+
+  @override
+  _LocationSelectorState createState() => _LocationSelectorState();
+}
+
+class _LocationSelectorState extends State<LocationSelector> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 130.h,
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10.h),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(150.w),
-            borderSide: BorderSide(
-              width: 0,
-              style: BorderStyle.none,
-            ),
-          ),
-          fillColor: ThemeColors.searchBar,
-          filled: true,
-          prefixIcon: Padding(
-            padding: EdgeInsets.only(left: 50.w),
-            child: Icon(Icons.search, color: ThemeColors.searchBarIcon),
-          ),
-          suffixIcon: Padding(
-            padding: EdgeInsets.only(right: 50.w),
-            child: GestureDetector(
-              child: Icon(
-                Icons.near_me,
-                color: ThemeColors.searchBarIcon,
-              ),
-              onTap: () {
-                // TODO: switch to geolocation
-              },
+    return SizedBox(
+      height: 40,
+      child: FlatButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        color: ThemeColors.searchBar,
+        splashColor: Colors.white,
+        onPressed: () => widget.model.navigateToSearch(),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+            text: TextSpan(
+              children: <InlineSpan>[
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
+                ),
+                WidgetSpan(
+                  child: SizedBox(width: 7),
+                ),
+                TextSpan(
+                    text: 'Dishes, food types or places',
+                    style: TextStyle(
+                        fontFamily: 'Lato', color: Colors.grey, fontSize: 13)),
+              ],
             ),
           ),
         ),
+        textColor: Colors.black45,
       ),
-    );
-  }
-}
-
-class FlagSelector extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 120.w,
-      // TODO: flag selector widget
-      child: Image.asset('assets/images/MalaysiaFlag.png'),
     );
   }
 }

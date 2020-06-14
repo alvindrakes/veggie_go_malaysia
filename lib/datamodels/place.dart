@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 
-class Restaurant {
+class Place {
   final String name;
   final String address;
   final double rating;
@@ -14,7 +14,7 @@ class Restaurant {
   // Calculate distance from user with a method
   double _distanceFromUser;
 
-  Restaurant({
+  Place({
     @required this.name,
     this.address,
     this.rating,
