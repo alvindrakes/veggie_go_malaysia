@@ -127,6 +127,7 @@ class _HomeViewState extends State<HomeView> {
                   ResultsListView('Nearest to You', model.nearestPlaces),
                   ResultsListView('Recommended', model.recommendedPlaces),
                   ResultsListView('Popular among users', model.popularPlaces),
+                  ResultsListView('Budget', model.budgetPlaces),
                 ]),
               ),
             ]),

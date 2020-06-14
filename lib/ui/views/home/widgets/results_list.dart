@@ -79,7 +79,6 @@ class ResultsListView extends StatelessWidget {
             ),
           ),
         ),
-        Row(),
       ],
     );
   }
