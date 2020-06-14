@@ -2,7 +2,7 @@
 
 # veggie_go_malaysia
 
-A non-profit vegan society app that show all vegan & vegetarian friendly restaurants nearby.
+A non-profit vegan society app that show all vegan & vegetarian friendly restaurants and stores nearby.
 
 **App development rules to remember:**
 
