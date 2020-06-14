@@ -35,4 +35,25 @@ class MockFirestore implements DatabaseService {
           latitude: 4.252534),
     ];
   }
+
+  Future<List<Place>> getRecommendedPlaces() async {
+    return [
+      Place(
+          name: 'BP Dragonfly Garden', longitude: 100.12343, latitude: 3.84232),
+      Place(
+          name: 'Boye Vegetarian Cafe',
+          longitude: 101.322545,
+          latitude: 4.252534),
+    ];
+  }
+
+  Future<List<Place>> getPopularPlaces() async {
+    return [
+      Place(name: 'Kita Coffee', longitude: 100.12343, latitude: 3.84232),
+      Place(
+          name: 'Malaysia Yu Hua Zhai Association',
+          longitude: 101.322545,
+          latitude: 4.252534),
+    ];
+  }
 }

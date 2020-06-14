@@ -18,9 +18,10 @@ class ResultsListView extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Lato'),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato',
+                ),
               ),
               Spacer(),
               Image.asset(

@@ -125,6 +125,8 @@ class _HomeViewState extends State<HomeView> {
               SliverList(
                 delegate: SliverChildListDelegate([
                   ResultsListView('Nearest to You', model.nearestPlaces),
+                  ResultsListView('Recommended', model.recommendedPlaces),
+                  ResultsListView('Popular among users', model.popularPlaces),
                 ]),
               ),
             ]),
