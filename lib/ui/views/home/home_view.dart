@@ -258,7 +258,7 @@ class _ResultsListView extends StatelessWidget {
               Text(
                 'Nearest to You',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Lato'),
               ),
