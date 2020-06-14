@@ -31,7 +31,6 @@ class QuickSearch extends StatelessWidget {
     ['Thai', Image.asset('assets/images/thai_food.png')],
     ['Korean', Image.asset('assets/images/korean_food.png')],
     ['Mixed', Image.asset('assets/images/fusion_food.png')],
-    ['More', null],
   ];
 
   @override
