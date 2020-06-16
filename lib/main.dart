@@ -11,15 +11,13 @@ void main() {
   Logger.level = Level.info;
 
   setupLocator();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(App());
-  });
+  runApp(App());
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Veggie Go Malaysia',
