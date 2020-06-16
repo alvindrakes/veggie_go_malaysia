@@ -14,12 +14,7 @@ import 'package:veggie_go_malaysia/ui/views/home/widgets/selector_chip.dart';
 import '../../../constants/colors.dart';
 import 'widgets/quick_search.dart';
 
-class HomeView extends StatefulWidget {
-  @override
-  _HomeViewState createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
+class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -40,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
                       height: 35,
                       width: 35,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     DropdownButton<String>(
                       value: model.currentCountry == Country.Malaysia
                           ? 'Malaysia'
@@ -77,40 +72,39 @@ class _HomeViewState extends State<HomeView> {
                   children: <Widget>[
                     Wrap(
                       children: [
-                        SelectorChip('Restaurants', Mode.Restaurants, model),
-                        SizedBox(
+                        SelectorChip('Restaurants', Mode.Restaurants),
+                        const SizedBox(
                           width: 10,
                         ),
-                        SelectorChip('Stores', Mode.Stores, model),
+                        SelectorChip('Stores', Mode.Stores),
                       ],
                     ),
                   ],
                 ),
               ),
-              SearchBar(model),
+              SearchBar(),
               SliverList(
                 delegate: SliverChildListDelegate([
-                  SizedBox(height: 15),
-                  model.isBusy
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: ShimmerGrid())
-                      : QuickSearch(),
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: model.isBusy ? ShimmerGrid() : QuickSearch(),
+                  )
                 ]),
               ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     model.isBusy
-                        ? ShimmerList()
+                        ? const ShimmerList()
                         : AnnouncementCarousel(model.announcements),
                   ]),
                 ),
               ),
               model.isBusy
-                  ? SliverToBoxAdapter(child: SizedBox())
+                  ? const SliverToBoxAdapter(child: SizedBox())
                   : SliverList(
                       delegate: SliverChildListDelegate([
                         ResultsListView('Nearest to You', model.nearestPlaces),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 
-class SelectorChip extends StatelessWidget {
-  final HomeViewModel model;
+class SelectorChip extends ViewModelWidget<HomeViewModel> {
   final Mode mode;
   final String modeText;
-  SelectorChip(this.modeText, this.mode, this.model);
+
+  const SelectorChip(this.modeText, this.mode);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel model) {
     return ChoiceChip(
       label: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
