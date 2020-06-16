@@ -10,12 +10,12 @@ class ShimmerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 500,
       child: Shimmer.fromColors(
           baseColor: Colors.grey[300],
           highlightColor: Colors.grey[100],
           child: ListView.builder(
-            itemCount: 3,
+            itemCount: 4,
             itemBuilder: (context, index) => ListItem(index: index),
           )),
     );
