@@ -58,6 +58,7 @@ class PlacesCard extends StatelessWidget {
               ),
               const Spacer(),
               Flexible(
+                flex: 2,
                 child: Text(
                   'Breakfast',
                   style: _greyTextTyle,
