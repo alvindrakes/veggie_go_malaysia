@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,15 +28,21 @@ class PlacesCard extends StatelessWidget {
                   height: 154,
                   child: Stack(
                     children: <Widget>[
-                      Container(
-                        height: 140,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/images/restaurant.jpg'),
+                      CachedNetworkImage(
+                        imageUrl: place.mainPhoto,
+                        imageBuilder: (context, imageProvider) => Container(
+                          height: 140,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: imageProvider,
+                            ),
                           ),
                         ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                       _extraInfoContainer(),
                     ],
@@ -55,59 +62,87 @@ class PlacesCard extends StatelessWidget {
           Text(
             place.name,
             style: TextStyle(
+              fontFamily: 'Lato',
               fontWeight: FontWeight.w600,
-              fontSize: 16.0,
+              fontSize: 14.0,
             ),
           ),
           Row(
             children: <Widget>[
               Icon(
                 Icons.star,
-                size: 18,
+                size: 20,
+                color: (place.rating ?? 0.0) >= 4.4
+                    ? ThemeColors.brightGreen
+                    : ThemeColors.earthyGreen,
               ),
               const SizedBox(width: 5),
               Text(
                 place.rating.toStringAsFixed(1),
                 style: TextStyle(
-                  color: ThemeColors.brightGreen,
+                  fontFamily: 'Lato',
+                  fontSize: 14,
+                  color: place.rating >= 4.4
+                      ? ThemeColors.brightGreen
+                      : ThemeColors.earthyGreen,
                 ),
               ),
               const SizedBox(width: 4.0),
               Text(
-                '(54)',
-                style: _greyTextTyle,
+                '(${place.userRatingsTotal}+)',
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: ThemeColors.textGrey,
+                  fontSize: 12,
+                ),
               ),
               const SizedBox(width: 10.0),
               Text(
-                '\$',
-                style: _greyTextTyle,
+                '\$' * place.priceLevel,
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: ThemeColors.textGrey,
+                  fontSize: 14,
+                ),
               ),
               const Spacer(),
-              Flexible(
-                flex: 2,
-                child: Text(
-                  'Breakfast',
-                  style: _greyTextTyle,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+              Text(
+                'Breakfast',
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: ThemeColors.textGrey,
+                  fontSize: 12,
                 ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ],
           ),
           Text(
-            'Cozy.Casual.Good for kids',
-            style: _greyTextTyle,
+            'Cozy · Casual · Good for kids',
+            style: TextStyle(
+              fontFamily: 'Lato',
+              color: ThemeColors.textGrey,
+              fontSize: 11,
+            ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
           Row(
             children: <Widget>[
-              Text('${place.distanceFromUser.toString()} km',
-                  style: _greyTextTyle),
+              Text(
+                '${place.distanceFromUser.toString()} km',
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: ThemeColors.textGrey,
+                  fontSize: 13,
+                ),
+              ),
               const Spacer(),
               Text(
                 'Open',
                 style: TextStyle(
+                  fontFamily: 'Lato',
                   color: ThemeColors.brightGreen,
                   fontWeight: FontWeight.w600,
                 ),

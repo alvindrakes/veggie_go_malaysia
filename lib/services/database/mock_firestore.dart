@@ -29,13 +29,25 @@ class MockFirestore implements DatabaseService {
 
     return [
       Place(
-          name: 'Kafe The Leaf Healthy House',
-          longitude: 100.12343,
-          latitude: 3.84232),
+        name: 'Kafe The Leaf Healthy House',
+        rating: 4.4,
+        userRatingsTotal: 290,
+        priceLevel: 2,
+        longitude: 100.12343,
+        latitude: 3.84232,
+        mainPhoto:
+            'https://lh5.googleusercontent.com/p/AF1QipORDFR9HCVa9WOAVdBX3a8y5JnKLpFVmGN9GlTw=w203-h114-k-no',
+      ),
       Place(
-          name: 'Restaurant Sayur-Sayuran Shi Yuan',
-          longitude: 101.322545,
-          latitude: 4.252534),
+        name: 'Restaurant Sayur-Sayuran Shi Yuan',
+        rating: 3.8,
+        userRatingsTotal: 290,
+        priceLevel: 1,
+        longitude: 101.322545,
+        latitude: 4.252534,
+        mainPhoto:
+            'https://lh5.googleusercontent.com/p/AF1QipOd22OTPsADGiRAAyYvjOco3vEFQpusOCpdXNj0=w203-h152-k-no',
+      ),
     ];
   }
 
@@ -44,31 +56,49 @@ class MockFirestore implements DatabaseService {
 
     return [
       Place(
-          name: 'BP Dragonfly Garden', longitude: 100.12343, latitude: 3.84232),
+        name: 'BP Dragonfly Garden',
+        rating: 4.2,
+        userRatingsTotal: 45,
+        priceLevel: 1,
+        longitude: 100.12343,
+        latitude: 3.84232,
+        mainPhoto:
+            'https://lh5.googleusercontent.com/p/AF1QipN2OAGcRlcgFfLa7Xxw-fEfZLCuVQDjBq0O-2t8=w203-h152-k-no',
+      ),
       Place(
-          name: 'Boye Vegetarian Cafe',
-          longitude: 101.322545,
-          latitude: 4.252534),
+        name: 'Boye Vegetarian Cafe',
+        rating: 4.0,
+        userRatingsTotal: 117,
+        priceLevel: 2,
+        longitude: 101.322545,
+        latitude: 4.252534,
+        mainPhoto:
+            'https://lh5.googleusercontent.com/p/AF1QipM9U5vwqMrzcp6Ya9WNMfNfwZB99S359TnZknIU=w203-h114-k-no',
+      ),
     ];
   }
 
   Future<List<Place>> getPopularPlaces() async {
     return [
-      Place(name: 'Kita Coffee', longitude: 100.12343, latitude: 3.84232),
       Place(
-          name: 'Malaysia Yu Hua Zhai Association',
-          longitude: 101.322545,
-          latitude: 4.252534),
-    ];
-  }
-
-  Future<List<Place>> getBudgetPlaces() async {
-    return [
-      Place(name: 'Kita Coffee', longitude: 100.12343, latitude: 3.84232),
+          name: 'Kita Coffee',
+          rating: 4.6,
+          userRatingsTotal: 48,
+          priceLevel: 2,
+          longitude: 100.12343,
+          latitude: 3.84232,
+          mainPhoto:
+              'https://lh5.googleusercontent.com/p/AF1QipMpcuLud85oim0rilm-bLKdrXpiDEnqRln8KIFh=w203-h203-k-no'),
       Place(
-          name: 'Malaysia Yu Hua Zhai Association',
-          longitude: 101.322545,
-          latitude: 4.252534),
+        name: 'Malaysia Yu Hua Zhai Association',
+        rating: 4.7,
+        userRatingsTotal: 44,
+        priceLevel: 2,
+        longitude: 101.322545,
+        latitude: 4.252534,
+        mainPhoto:
+            'https://lh5.googleusercontent.com/p/AF1QipNbxjxqROK-kQ2DIEXaLjIYS2bvAed8DjO9r7tr=w203-h114-k-no',
+      ),
     ];
   }
 }

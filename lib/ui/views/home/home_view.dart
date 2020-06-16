@@ -111,7 +111,6 @@ class HomeView extends StatelessWidget {
                         ResultsListView('Recommended', model.recommendedPlaces),
                         ResultsListView(
                             'Popular among users', model.popularPlaces),
-                        ResultsListView('Budget options', model.budgetPlaces),
                       ]),
                     ),
             ]),

@@ -60,8 +60,6 @@ class HomeViewModel extends FutureViewModel {
   List<Place> get recommendedPlaces => _recommendedPlaces;
   List<Place> _popularPlaces = <Place>[];
   List<Place> get popularPlaces => _popularPlaces;
-  List<Place> _budgetPlaces = <Place>[];
-  List<Place> get budgetPlaces => _budgetPlaces;
 
   void navigateToSearch() async {
     await _navigationService.navigateTo(Routes.searchViewRoute);
@@ -74,7 +72,6 @@ class HomeViewModel extends FutureViewModel {
     _nearestPlaces = await _firestoreService.getNearestPlaces();
     _recommendedPlaces = await _firestoreService.getRecommendedPlaces();
     _popularPlaces = await _firestoreService.getPopularPlaces();
-    _budgetPlaces = await _firestoreService.getBudgetPlaces();
     setBusy(false);
   }
 }

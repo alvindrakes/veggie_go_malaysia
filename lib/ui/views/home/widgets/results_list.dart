@@ -5,8 +5,8 @@ import 'package:veggie_go_malaysia/ui/views/home/widgets/places_card.dart';
 
 class ResultsListView extends StatelessWidget {
   final String title;
-  final List<Place> nearestPlaces;
-  ResultsListView(this.title, this.nearestPlaces);
+  final List<Place> places;
+  ResultsListView(this.title, this.places);
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +39,16 @@ class ResultsListView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: nearestPlaces.length + 1,
+              itemCount: places.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                return index == nearestPlaces.length
+                return index == places.length
                     ? _circular_arrow()
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
                           showExtraInfo: true,
                           showFavourite: false,
-                          place: Place(
-                            name: 'Bp garden sky',
-                            rating: 5.0,
-                            address: 'New york suite',
-                          ),
+                          place: places[index],
                         ),
                       );
               },

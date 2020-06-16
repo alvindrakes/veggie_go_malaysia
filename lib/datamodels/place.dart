@@ -6,11 +6,14 @@ class Place {
   final String name;
   final String address;
   final double rating;
+  final int userRatingsTotal;
+  final int priceLevel; // 1(cheap)-5(expensive)
+
   final Map<String, dynamic> openingHours;
   final double latitude;
   final double longitude;
 
-  final NetworkImage mainPhoto;
+  final String mainPhoto;
   // Calculate distance from user with a method
   double _distanceFromUser;
 
@@ -18,6 +21,8 @@ class Place {
     @required this.name,
     this.address,
     this.rating,
+    this.userRatingsTotal,
+    this.priceLevel,
     this.openingHours,
     this.latitude,
     this.longitude,
