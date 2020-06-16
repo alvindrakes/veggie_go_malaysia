@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:veggie_go_malaysia/app/locator.dart';
@@ -10,7 +11,10 @@ void main() {
   Logger.level = Level.info;
 
   setupLocator();
-  runApp(App());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(App());
+  });
 }
 
 class App extends StatelessWidget {
