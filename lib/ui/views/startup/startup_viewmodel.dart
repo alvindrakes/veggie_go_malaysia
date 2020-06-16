@@ -11,7 +11,7 @@ class StartupViewModel extends BaseViewModel {
   //    authentication,
   //    permissions manager,
   Future setup() async {
-    await Future.delayed(Duration(milliseconds: 200));
+    await Future.value();
     await _navigationService.replaceWith(Routes.homeViewRoute);
   }
 }
