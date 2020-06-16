@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'package:veggie_go_malaysia/ui/shared_widgets/shimmers.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/announcement.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
@@ -110,7 +111,11 @@ class _HomeViewState extends State<HomeView> {
               SliverList(
                 delegate: SliverChildListDelegate([
                   SizedBox(height: 15),
-                  QuickSearch(),
+                  model.isBusy
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: ShimmerGrid())
+                      : QuickSearch(),
                 ]),
               ),
               SliverPadding(
@@ -118,17 +123,24 @@ class _HomeViewState extends State<HomeView> {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     SizedBox(height: 5),
-                    AnnouncementCarousel(model.announcements),
+                    model.isBusy
+                        ? ShimmerList()
+                        : AnnouncementCarousel(model.announcements),
                   ]),
                 ),
               ),
               SliverList(
-                delegate: SliverChildListDelegate([
-                  ResultsListView('Nearest to You', model.nearestPlaces),
-                  ResultsListView('Recommended', model.recommendedPlaces),
-                  ResultsListView('Popular among users', model.popularPlaces),
-                  ResultsListView('Budget options', model.budgetPlaces),
-                ]),
+                delegate: model.isBusy
+                    ? SliverChildListDelegate([
+                        SizedBox(),
+                      ])
+                    : SliverChildListDelegate([
+                        ResultsListView('Nearest to You', model.nearestPlaces),
+                        ResultsListView('Recommended', model.recommendedPlaces),
+                        ResultsListView(
+                            'Popular among users', model.popularPlaces),
+                        ResultsListView('Budget options', model.budgetPlaces),
+                      ]),
               ),
             ]),
           ),

@@ -28,10 +28,12 @@ class HomeViewModel extends FutureViewModel {
 
   @override
   Future futureToRun() async {
+    setBusy(true);
     _announcements = await _firestoreService.getAnnouncements();
     _nearestPlaces = await _firestoreService.getNearestPlaces();
     _recommendedPlaces = await _firestoreService.getRecommendedPlaces();
     _popularPlaces = await _firestoreService.getPopularPlaces();
     _budgetPlaces = await _firestoreService.getBudgetPlaces();
+    setBusy(false);
   }
 }
