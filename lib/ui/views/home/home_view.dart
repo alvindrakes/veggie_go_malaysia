@@ -109,19 +109,17 @@ class _HomeViewState extends State<HomeView> {
                   ]),
                 ),
               ),
-              SliverList(
-                delegate: model.isBusy
-                    ? SliverChildListDelegate([
-                        SizedBox(),
-                      ])
-                    : SliverChildListDelegate([
+              model.isBusy
+                  ? SliverToBoxAdapter(child: SizedBox())
+                  : SliverList(
+                      delegate: SliverChildListDelegate([
                         ResultsListView('Nearest to You', model.nearestPlaces),
                         ResultsListView('Recommended', model.recommendedPlaces),
                         ResultsListView(
                             'Popular among users', model.popularPlaces),
                         ResultsListView('Budget options', model.budgetPlaces),
                       ]),
-              ),
+                    ),
             ]),
           ),
         ),
