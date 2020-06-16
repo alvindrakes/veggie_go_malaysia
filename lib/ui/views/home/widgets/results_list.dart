@@ -46,6 +46,8 @@ class ResultsListView extends StatelessWidget {
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
+                          showExtraInfo: true,
+                          showFavourite: false,
                           place: Place(
                             name: 'Bp garden sky',
                             rating: 5.0,
