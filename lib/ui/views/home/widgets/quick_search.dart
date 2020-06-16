@@ -35,21 +35,17 @@ class QuickSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          height: 90,
-          child: ListView.builder(
-            itemCount: _quickIcons.length,
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return _customIcon(
-                  Colors.grey, _quickIcons[index][0], _quickIcons[index][1]);
-            },
-          ),
-        ),
-      ],
+    return SizedBox(
+      height: 90,
+      child: ListView.builder(
+        itemCount: _quickIcons.length,
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return _customIcon(
+              Colors.grey, _quickIcons[index][0], _quickIcons[index][1]);
+        },
+      ),
     );
   }
 }
