@@ -1,19 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:veggie_go_malaysia/constants/colors.dart';
 import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
 
-class LocationSelector extends StatefulWidget {
-  final HomeViewModel model;
-  LocationSelector(this.model);
-
+class LocationSelector extends ViewModelWidget<HomeViewModel> {
   @override
-  _LocationSelectorState createState() => _LocationSelectorState();
-}
-
-class _LocationSelectorState extends State<LocationSelector> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel model) {
     return SizedBox(
       height: 40,
       child: FlatButton(
@@ -22,7 +15,7 @@ class _LocationSelectorState extends State<LocationSelector> {
         ),
         color: ThemeColors.searchBar,
         splashColor: Colors.white,
-        onPressed: () => widget.model.navigateToSearch(),
+        onPressed: () => model.navigateToSearch(),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(
