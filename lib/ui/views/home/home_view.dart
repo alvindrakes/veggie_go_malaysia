@@ -9,6 +9,7 @@ import 'package:veggie_go_malaysia/ui/views/home/widgets/announcement.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/results_list.dart';
 import 'package:veggie_go_malaysia/ui/views/home/widgets/search_bar.dart';
+import 'package:veggie_go_malaysia/ui/views/home/widgets/selector_chip.dart';
 
 import '../../../constants/colors.dart';
 import 'widgets/quick_search.dart';
@@ -19,7 +20,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  String dropdownValue = 'Malaysia'; // TODO: handle in viewmodel instead
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -42,7 +42,9 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     SizedBox(width: 10),
                     DropdownButton<String>(
-                      value: dropdownValue,
+                      value: model.currentCountry == Country.Malaysia
+                          ? 'Malaysia'
+                          : 'Singapore',
                       icon: Container(
                         height: 8,
                         child: Image.asset(
@@ -55,11 +57,7 @@ class _HomeViewState extends State<HomeView> {
                           fontSize: 16,
                           color: Colors.black),
                       underline: Container(),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          dropdownValue = newValue;
-                        });
-                      },
+                      onChanged: (_) => model.switchCountry(),
                       items: <String>['Malaysia', 'Singapore']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -77,32 +75,14 @@ class _HomeViewState extends State<HomeView> {
                 backgroundColor: Colors.white,
                 title: Row(
                   children: <Widget>[
-                    Chip(
-                      label: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Restaurants',
-                          style: TextStyle(
-                              fontFamily: 'Lato',
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
+                    Wrap(
+                      children: [
+                        SelectorChip('Restaurants', Mode.Restaurants, model),
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      backgroundColor: ThemeColors.brightGreen,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Chip(
-                      backgroundColor: Colors.white,
-                      label: Text(
-                        'Stores',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Lato',
-                            color: ThemeColors.brightGreen),
-                      ),
+                        SelectorChip('Stores', Mode.Stores, model),
+                      ],
                     ),
                   ],
                 ),
