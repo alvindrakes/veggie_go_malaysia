@@ -6,6 +6,7 @@ import 'package:veggie_go_malaysia/services/database/abstract_firestore.dart';
 
 class MockFirestore implements DatabaseService {
   Future<List<Announcement>> getAnnouncements() async {
+    await Future.delayed(Duration(milliseconds: 500));
     return [
       Announcement(
         title: 'Volunteer devs release design overhaul',
@@ -24,6 +25,8 @@ class MockFirestore implements DatabaseService {
   }
 
   Future<List<Place>> getNearestPlaces() async {
+    await Future.delayed(Duration(milliseconds: 500));
+
     return [
       Place(
           name: 'Kafe The Leaf Healthy House',
@@ -37,6 +40,8 @@ class MockFirestore implements DatabaseService {
   }
 
   Future<List<Place>> getRecommendedPlaces() async {
+    await Future.delayed(Duration(milliseconds: 500));
+
     return [
       Place(
           name: 'BP Dragonfly Garden', longitude: 100.12343, latitude: 3.84232),
