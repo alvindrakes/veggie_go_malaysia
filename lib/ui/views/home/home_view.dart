@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../constants/colors.dart';
+import '../../../enum/places_result_type.dart';
 import '../../shared_widgets/shimmers.dart';
 import 'home_viewmodel.dart';
 import 'widgets/announcement.dart';
@@ -107,11 +108,20 @@ class HomeView extends StatelessWidget {
                     : SliverList(
                         delegate: SliverChildListDelegate([
                           ResultsListView(
-                              'Nearest to You', model.nearestPlaces),
+                            'Nearest to You',
+                            model.nearestPlaces,
+                            PlacesResultType.nearest,
+                          ),
                           ResultsListView(
-                              'Recommended', model.recommendedPlaces),
+                            'Recommended',
+                            model.recommendedPlaces,
+                            PlacesResultType.recommended,
+                          ),
                           ResultsListView(
-                              'Popular among users', model.popularPlaces),
+                            'Popular among users',
+                            model.popularPlaces,
+                            PlacesResultType.popular,
+                          ),
                         ]),
                       ),
               ]),

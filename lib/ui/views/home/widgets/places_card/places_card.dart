@@ -13,7 +13,8 @@ class PlacesCard extends StatelessWidget {
     @required this.place,
     @required this.showExtraInfo,
     this.showFavourite = false,
-  }) : assert(place != null);
+  })  : assert(place != null),
+        assert(showExtraInfo != null);
 
   final Place place;
   final bool showFavourite;

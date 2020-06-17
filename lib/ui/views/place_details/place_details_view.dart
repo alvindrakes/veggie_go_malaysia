@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
+
+import '../../../datamodels/place.dart';
 
 class PlaceDetailsView extends StatelessWidget {
   final Place place;

@@ -1,6 +1,5 @@
-import 'package:veggie_go_malaysia/datamodels/announcement.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
-
+import '../../datamodels/announcement.dart';
+import '../../datamodels/place.dart';
 import 'abstract_firestore.dart';
 
 class FirestoreService implements DatabaseService {

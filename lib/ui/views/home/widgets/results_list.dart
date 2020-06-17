@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../datamodels/place.dart';
+import '../../../../enum/places_result_type.dart';
 import 'places_card/places_card.dart';
 
 class ResultsListView extends StatelessWidget {
   final String title;
   final List<Place> places;
-  ResultsListView(this.title, this.places);
+  final PlacesResultType resultType;
+  ResultsListView(
+    this.title,
+    this.places,
+    this.resultType,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +53,12 @@ class ResultsListView extends StatelessWidget {
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
-                          showExtraInfo: true,
-                          showFavourite: false,
+                          showExtraInfo: resultType == PlacesResultType.nearest
+                              ? false
+                              : true,
+                          showFavourite: resultType == PlacesResultType.popular
+                              ? true
+                              : false,
                           place: places[index],
                         ),
                       );
