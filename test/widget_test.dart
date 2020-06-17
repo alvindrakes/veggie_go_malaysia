@@ -11,7 +11,7 @@ void main() {
 
     await provideMockedNetworkImages(() async {
       await tester.pumpWidget(App());
-      await tester.pumpAndSettle(const Duration(milliseconds: 200));
+      // await tester.pumpAndSettle(const Duration(milliseconds: 200));
     });
   });
 }
