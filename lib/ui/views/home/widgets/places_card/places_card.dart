@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../datamodels/place.dart';
-import 'places_card_model.dart';
+import 'places_card_viewmodel.dart';
 
 class PlacesCard extends StatelessWidget {
   const PlacesCard({
@@ -22,7 +22,7 @@ class PlacesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PlacesCardModel>.nonReactive(
       builder: (context, model, _) => GestureDetector(
-        onTap: model.navigateToPlaceDetails,
+        onTap: () => model.navigateToPlaceDetails(place),
         child: SizedBox(
           width: 200,
           child: Column(
@@ -80,19 +80,22 @@ class _ImageWithExtraInfo extends StatelessWidget {
       height: 154,
       child: Stack(
         children: <Widget>[
-          CachedNetworkImage(
-            imageUrl: place.mainPhoto,
-            imageBuilder: (context, imageProvider) => Container(
-              height: 140,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: imageProvider,
+          Hero(
+            tag: place.documentID,
+            child: CachedNetworkImage(
+              imageUrl: place.mainPhoto,
+              imageBuilder: (context, imageProvider) => Container(
+                height: 140,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: imageProvider,
+                  ),
                 ),
               ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           _ExtraInfoContainer(showFavourite: showFavourite),
         ],

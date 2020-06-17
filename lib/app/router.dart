@@ -33,7 +33,7 @@ class Router {
         );
       case Routes.placeDetailsRoute:
         return CupertinoPageRoute<dynamic>(
-          builder: (context) => PlaceDetailsView(),
+          builder: (context) => PlaceDetailsView(settings.arguments),
           settings: settings,
         );
       default:
