@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
+
+import '../../../../constants/colors.dart';
+import '../home_viewmodel.dart';
 
 class LocationSelector extends ViewModelWidget<HomeViewModel> {
   @override

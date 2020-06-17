@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:location/location.dart';
 import 'package:vector_math/vector_math.dart';
-import 'package:veggie_go_malaysia/datamodels/user_location.dart';
+import '../datamodels/user_location.dart';
 
 class GeoLocationService {
   UserLocation _currentLocation;

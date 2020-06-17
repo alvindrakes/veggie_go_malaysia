@@ -2,17 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/ui/shared_widgets/shimmers.dart';
-import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/announcement.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/quick_search.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/results_list.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/search_bar.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/selector_chip.dart';
 
 import '../../../constants/colors.dart';
+import '../../shared_widgets/shimmers.dart';
+import 'home_viewmodel.dart';
+import 'widgets/announcement.dart';
 import 'widgets/quick_search.dart';
+import 'widgets/results_list.dart';
+import 'widgets/search_bar.dart';
+import 'widgets/selector_chip.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -37,7 +35,7 @@ class HomeView extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     DropdownButton<String>(
-                      value: model.currentCountry == Country.Malaysia
+                      value: model.currentCountry == Country.malaysia
                           ? 'Malaysia'
                           : 'Singapore',
                       icon: Container(
@@ -54,7 +52,7 @@ class HomeView extends StatelessWidget {
                       underline: Container(),
                       onChanged: (_) => model.switchCountry(),
                       items: <String>['Malaysia', 'Singapore']
-                          .map<DropdownMenuItem<String>>((String value) {
+                          .map<DropdownMenuItem<String>>((value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -72,11 +70,11 @@ class HomeView extends StatelessWidget {
                   children: <Widget>[
                     Wrap(
                       children: [
-                        SelectorChip('Restaurants', Mode.Restaurants),
+                        SelectorChip('Restaurants', Mode.restaurants),
                         const SizedBox(
                           width: 10,
                         ),
-                        SelectorChip('Stores', Mode.Stores),
+                        SelectorChip('Stores', Mode.stores),
                       ],
                     ),
                   ],

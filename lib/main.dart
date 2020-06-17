@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:veggie_go_malaysia/app/locator.dart';
-import 'package:veggie_go_malaysia/app/router.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'app/locator.dart';
+import 'app/router.dart';
+import 'constants/colors.dart';
 
 void main() {
   Logger.level = Level.info;

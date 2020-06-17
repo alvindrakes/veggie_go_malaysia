@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/places_card.dart';
+import '../../../../constants/colors.dart';
+import '../../../../datamodels/place.dart';
+import 'places_card.dart';
 
 class ResultsListView extends StatelessWidget {
   final String title;
@@ -40,9 +40,9 @@ class ResultsListView extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: places.length + 1,
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (context, index) {
                 return index == places.length
-                    ? _circular_arrow()
+                    ? _circularArrow()
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
@@ -59,7 +59,7 @@ class ResultsListView extends StatelessWidget {
     );
   }
 
-  Widget _circular_arrow() {
+  Widget _circularArrow() {
     return Container(
       width: 150,
       child: Material(

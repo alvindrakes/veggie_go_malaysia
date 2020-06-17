@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
+import '../../../../constants/colors.dart';
+import '../../../../datamodels/place.dart';
 
 class PlacesCard extends StatelessWidget {
   const PlacesCard({

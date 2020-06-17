@@ -11,9 +11,9 @@ void main() {
   final geolocationService = GeoLocationService();
 
   group('GeoLocationService', () {
-    test(
-        'returns a location if the service is enabled and permission is granted completes successfully',
-        () async {
+    test('''
+returns a location if the service is enabled and permission is granted completes successfully
+''', () async {
       final location = MockLocation();
 
       when(location.serviceEnabled()).thenAnswer((_) async => true);

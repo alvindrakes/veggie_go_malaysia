@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
+import '../home_viewmodel.dart';
+import 'location_bar.dart';
 
 class SearchBar extends ViewModelWidget<HomeViewModel> {
   @override

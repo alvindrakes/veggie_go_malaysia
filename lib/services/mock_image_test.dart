@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:mockito/mockito.dart';
 
+// ignore_for_file: lines_longer_than_80_chars
 /// Runs [body] in a fresh [Zone] that provides mocked responses for [Image.network] widgets.
 ///
 /// Behind the scenes, this creates a mocked HTTP client that responds with mocked
@@ -73,7 +74,7 @@ MockHttpClient _createMockImageHttpClient(
       .thenAnswer((_) => Future<HttpClientResponse>.value(response));
   when(response.contentLength).thenReturn(_transparentImage.length);
   when(response.statusCode).thenReturn(HttpStatus.ok);
-  when(response.listen(any)).thenAnswer((Invocation invocation) {
+  when(response.listen(any)).thenAnswer((invocation) {
     final void Function(List<int>) onData = invocation.positionalArguments[0];
     final void Function() onDone = invocation.namedArguments[#onDone];
     final void Function(Object, [StackTrace]) onError =

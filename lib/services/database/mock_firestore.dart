@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:veggie_go_malaysia/datamodels/announcement.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
-import 'package:veggie_go_malaysia/services/database/abstract_firestore.dart';
+import '../../datamodels/announcement.dart';
+import '../../datamodels/place.dart';
+import 'abstract_firestore.dart';
 
 class MockFirestore implements DatabaseService {
   Future<List<Announcement>> getAnnouncements() async {
@@ -10,8 +10,9 @@ class MockFirestore implements DatabaseService {
     return [
       Announcement(
         title: 'Volunteer devs release design overhaul',
-        previewContent:
-            'A team of global app developers have created this new app from scratch...',
+        previewContent: '''
+A team of global app developers have created this new app from scratch...
+''',
         imageUrl: 'https://i.imgur.com/VTc14WS.png',
       ),
       Announcement(
