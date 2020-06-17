@@ -42,7 +42,7 @@ class ResultsListView extends StatelessWidget {
               itemCount: places.length + 1,
               itemBuilder: (context, index) {
                 return index == places.length
-                    ? _circularArrow()
+                    ? _circularArrowSection()
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
@@ -59,31 +59,34 @@ class ResultsListView extends StatelessWidget {
     );
   }
 
-  Widget _circularArrow() {
+  Widget _circularArrowSection() {
     return Container(
       width: 150,
-      child: Material(
-        color: ThemeColors.background,
-        child: Center(
-          child: Ink(
+      color: ThemeColors.background,
+      child: Center(
+        child: GestureDetector(
+          child: Container(
+            width: 45,
+            height: 45,
             decoration: ShapeDecoration(
                 color: Colors.white,
                 shape: CircleBorder(),
                 shadows: [
                   BoxShadow(
-                      blurRadius: 3,
-                      color: Colors.grey[200],
-                      spreadRadius: 1,
-                      offset: Offset(0, 2))
+                    blurRadius: 3,
+                    color: Colors.grey[200],
+                    spreadRadius: 1,
+                    offset: Offset(0, 2),
+                  )
                 ]),
-            child: IconButton(
-              icon: Image.asset(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Image.asset(
                 'assets/icons/arrow_right.png',
-                width: 20,
               ),
-              onPressed: () {},
             ),
           ),
+          onTap: () {},
         ),
       ),
     );

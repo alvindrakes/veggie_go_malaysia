@@ -8,15 +8,15 @@ import '../home_viewmodel.dart';
 class LocationSelector extends ViewModelWidget<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel model) {
-    return SizedBox(
-      height: 40,
-      child: FlatButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+    return GestureDetector(
+      onTap: () => model.navigateToSearch(),
+      child: Container(
+        height: 40,
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: ThemeColors.searchBar,
         ),
-        color: ThemeColors.searchBar,
-        splashColor: Colors.white,
-        onPressed: () => model.navigateToSearch(),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(
@@ -36,12 +36,13 @@ class LocationSelector extends ViewModelWidget<HomeViewModel> {
                 TextSpan(
                     text: 'Dishes, food types or places',
                     style: TextStyle(
-                        fontFamily: 'Lato', color: Colors.grey, fontSize: 13)),
+                      color: Colors.grey,
+                      fontSize: 13,
+                    )),
               ],
             ),
           ),
         ),
-        textColor: Colors.black45,
       ),
     );
   }

@@ -12,12 +12,12 @@ class SearchBar extends ViewModelWidget<HomeViewModel> {
         children: <Widget>[
           Expanded(child: LocationSelector()),
           const SizedBox(width: 10),
-          IconButton(
-            icon: Image.asset(
+          GestureDetector(
+            child: Image.asset(
               'assets/icons/filter.png',
               height: 20,
             ),
-            onPressed: () {},
+            onTap: () {},
           ),
         ],
       ),
