@@ -31,19 +31,9 @@ class App extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: CupertinoThemeData(
         primaryColor: ThemeColors.brightGreen,
-        barBackgroundColor: ThemeColors.background,
         scaffoldBackgroundColor: ThemeColors.background,
         textTheme: CupertinoTextThemeData(
-          navActionTextStyle: TextStyle(
-            color: ThemeColors.brightGreen,
-          ),
-          navTitleTextStyle: TextStyle(
-            color: ThemeColors.brightGreen,
-          ),
-          textStyle: TextStyle(
-            fontFamily: 'Lato',
-            fontWeight: FontWeight.w500,
-          ),
+          textStyle: TextStyle(fontFamily: 'Lato'),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../constants/colors.dart';
 import '../../../../datamodels/place.dart';
-import 'places_card.dart';
+import 'places_card/places_card.dart';
 
 class ResultsListView extends StatelessWidget {
   final String title;

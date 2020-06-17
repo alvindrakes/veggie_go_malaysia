@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../ui/views/home/home_view.dart';
 import '../ui/views/home/widgets/text_search/text_search.dart';
-import '../ui/views/restaurant_details/restaurant_details_view.dart';
+import '../ui/views/place_details/place_details_view.dart';
 import '../ui/views/startup/startup_view.dart';
 
 abstract class Routes {
   static const startupViewRoute = '/';
   static const homeViewRoute = '/home';
   static const searchViewRoute = '/search';
-  static const retaurantDetailsRoute = '/restaurant_details';
+  static const placeDetailsRoute = '/restaurant_details';
 }
 
 class Router {
@@ -30,9 +31,9 @@ class Router {
           builder: (context) => SearchView(),
           settings: settings,
         );
-      case Routes.retaurantDetailsRoute:
+      case Routes.placeDetailsRoute:
         return CupertinoPageRoute<dynamic>(
-          builder: (context) => RestaurantDetailsView(),
+          builder: (context) => PlaceDetailsView(),
           settings: settings,
         );
       default:
