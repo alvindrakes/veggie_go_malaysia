@@ -195,8 +195,8 @@ class _DescriptionRow extends StatelessWidget {
 
   static const _middotUnicode = '\u22C5';
 
-  String _drawMiddot(int i) {
-    if (i == 2) {
+  String _drawMiddot(int i, int featuresLength) {
+    if (i == featuresLength - 1) {
       return '';
     }
 
@@ -209,7 +209,7 @@ class _DescriptionRow extends StatelessWidget {
       children: <Widget>[
         for (int i = 0; i < place.features.length; i++)
           Text(
-            '${place.features[i]} ${_drawMiddot(i)} ',
+            '${place.features[i]} ${_drawMiddot(i, place.features.length)} ',
             style: TextStyle(
               color: ThemeColors.textGrey,
               fontSize: 11,
