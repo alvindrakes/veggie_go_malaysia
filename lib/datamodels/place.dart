@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 
 class Place {
+  final String documentID;
   final String name;
   final String address;
   final double rating;
@@ -18,6 +19,7 @@ class Place {
   double _distanceFromUser;
 
   Place({
+    @required this.documentID,
     @required this.name,
     this.address,
     this.rating,

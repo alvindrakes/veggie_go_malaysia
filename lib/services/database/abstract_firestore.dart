@@ -1,3 +1,9 @@
+import '../../datamodels/announcement.dart';
+import '../../datamodels/place.dart';
+
 abstract class DatabaseService {
-  // TODO:
+  Future<List<Announcement>> getAnnouncements();
+  Future<List<Place>> getNearestPlaces();
+  Future<List<Place>> getRecommendedPlaces();
+  Future<List<Place>> getPopularPlaces();
 }
