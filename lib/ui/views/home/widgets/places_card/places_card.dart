@@ -41,7 +41,7 @@ class PlacesCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/restaurant.jpg'),
+                          image: CachedNetworkImageProvider(place.mainPhoto),
                         ),
                       ),
                     ),
@@ -54,7 +54,7 @@ class PlacesCard extends StatelessWidget {
                 ),
               ),
               _RatingInfoRow(place: place),
-              _DescriptionRow(),
+              _DescriptionRow(place: place),
               _DistanceAndOpeningRow(place: place),
             ],
           ),
@@ -188,18 +188,36 @@ class _ExtraInfoContainer extends StatelessWidget {
 class _DescriptionRow extends StatelessWidget {
   const _DescriptionRow({
     Key key,
+    this.place,
   }) : super(key: key);
+
+  final Place place;
+
+  static const _middotUnicode = '\u22C5';
+
+  String _drawMiddot(int i) {
+    if (i == 2) {
+      return '';
+    }
+
+    return '$_middotUnicode';
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Cozy · Casual · Good for kids',
-      style: TextStyle(
-        color: ThemeColors.textGrey,
-        fontSize: 11,
-      ),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
+    return Row(
+      children: <Widget>[
+        for (int i = 0; i < place.features.length; i++)
+          Text(
+            '${place.features[i]} ${_drawMiddot(i)} ',
+            style: TextStyle(
+              color: ThemeColors.textGrey,
+              fontSize: 11,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+      ],
     );
   }
 }
@@ -217,7 +235,7 @@ class _DistanceAndOpeningRow extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          '${place.distanceFromUser.toString()} km',
+          '${place.distanceFromUser.toStringAsFixed(1)} km',
           style: TextStyle(
             color: ThemeColors.textGrey,
             fontSize: 13,
