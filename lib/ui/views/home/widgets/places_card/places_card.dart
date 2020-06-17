@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
+
 import '../../../../../constants/colors.dart';
 import '../../../../../datamodels/place.dart';
-
 import 'places_card_model.dart';
 
 class PlacesCard extends StatelessWidget {
@@ -92,7 +92,6 @@ class _ImageWithExtraInfo extends StatelessWidget {
                 ),
               ),
             ),
-            placeholder: (context, url) => CircularProgressIndicator(),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           _ExtraInfoContainer(showFavourite: showFavourite),
@@ -282,16 +281,13 @@ class _RatingInfoRow extends StatelessWidget {
             ),
           ),
         ),
-        Flexible(
-          child: Text(
-            'Breakfast',
-            style: TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 12,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+        Text(
+          'Breakfast',
+          style: TextStyle(
+            color: ThemeColors.textGrey,
+            fontSize: 12,
           ),
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
