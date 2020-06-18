@@ -32,7 +32,7 @@ class App extends StatelessWidget {
 
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: 'title'.tr(),
+      title: "Veggie Go Malaysia",
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
