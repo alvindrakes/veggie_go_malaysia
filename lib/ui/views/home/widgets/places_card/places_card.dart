@@ -208,14 +208,16 @@ class _DescriptionRow extends StatelessWidget {
     return Row(
       children: <Widget>[
         for (int i = 0; i < place.features.length; i++)
-          Text(
-            '${place.features[i]} ${_drawMiddot(i, place.features.length)} ',
-            style: TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 11,
+          Flexible(
+            child: Text(
+              '${place.features[i]} ${_drawMiddot(i, place.features.length)} ',
+              style: TextStyle(
+                color: ThemeColors.textGrey,
+                fontSize: 11,
+              ),
+              overflow: TextOverflow.clip,
+              maxLines: 1,
             ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
           ),
       ],
     );
@@ -265,51 +267,56 @@ class _RatingInfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Icon(
-          Icons.star,
-          size: 20,
-          color: (place.rating ?? 0.0) >= 4.4
-              ? ThemeColors.brightGreen
-              : ThemeColors.earthyGreen,
+        Row(
+          children: <Widget>[
+            Icon(
+              Icons.star,
+              size: 20,
+              color: (place.rating ?? 0.0) >= 4.4
+                  ? ThemeColors.brightGreen
+                  : ThemeColors.earthyGreen,
+            ),
+            SizedBox(width: 5),
+            Text(
+              place.rating.toStringAsFixed(1),
+              style: TextStyle(
+                fontSize: 14,
+                color: place.rating >= 4.4
+                    ? ThemeColors.brightGreen
+                    : ThemeColors.earthyGreen,
+              ),
+            ),
+            SizedBox(width: 5),
+            Text(
+              '(${place.userRatingsTotal}+)',
+              style: TextStyle(
+                color: ThemeColors.textGrey,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 5),
+        SizedBox(width: 5),
         Text(
-          place.rating.toStringAsFixed(1),
+          '\$' * place.priceLevel,
           style: TextStyle(
+            color: ThemeColors.textGrey,
             fontSize: 14,
-            color: place.rating >= 4.4
-                ? ThemeColors.brightGreen
-                : ThemeColors.earthyGreen,
           ),
         ),
-        const SizedBox(width: 5),
-        Expanded(
-          flex: 1,
+        SizedBox(width: 5),
+        Flexible(
           child: Text(
-            '(${place.userRatingsTotal}+)',
+            place.vendorType[0] ?? '',
             style: TextStyle(
               color: ThemeColors.textGrey,
               fontSize: 12,
             ),
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.right,
           ),
-        ),
-        Expanded(
-          child: Text(
-            '\$' * place.priceLevel,
-            style: TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 14,
-            ),
-          ),
-        ),
-        Text(
-          'Breakfast',
-          style: TextStyle(
-            color: ThemeColors.textGrey,
-            fontSize: 12,
-          ),
-          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
