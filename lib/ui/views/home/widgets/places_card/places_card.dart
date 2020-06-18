@@ -205,7 +205,7 @@ class _DescriptionRow extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 11,
                 color: ThemeColors.textGrey,
               ),
               children: intersperse(
