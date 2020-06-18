@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
+import 'package:veggie_go_malaysia/utils/intersperse.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../datamodels/place.dart';
@@ -195,28 +196,27 @@ class _DescriptionRow extends StatelessWidget {
 
   static const _middotUnicode = '\u22C5';
 
-  String _drawMiddot(int i, int featuresLength) {
-    if (i == featuresLength - 1) {
-      return '';
-    }
-
-    return '$_middotUnicode';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        for (int i = 0; i < place.features.length; i++)
-          Text(
-            '${place.features[i]} ${_drawMiddot(i, place.features.length)} ',
-            style: TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 11,
-            ),
+        Expanded(
+          child: RichText(
             overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 12,
+                color: ThemeColors.textGrey,
+              ),
+              children: intersperse(
+                      TextSpan(text: _middotUnicode),
+                      place.features
+                          .map((String feature) => TextSpan(text: feature))
+                          .toList())
+                  .toList(),
+            ),
           ),
+        ),
       ],
     );
   }
@@ -265,51 +265,56 @@ class _RatingInfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Icon(
-          Icons.star,
-          size: 20,
-          color: (place.rating ?? 0.0) >= 4.4
-              ? ThemeColors.brightGreen
-              : ThemeColors.earthyGreen,
+        Row(
+          children: <Widget>[
+            Icon(
+              Icons.star,
+              size: 20,
+              color: (place.rating ?? 0.0) >= 4.4
+                  ? ThemeColors.brightGreen
+                  : ThemeColors.earthyGreen,
+            ),
+            SizedBox(width: 5),
+            Text(
+              place.rating.toStringAsFixed(1),
+              style: TextStyle(
+                fontSize: 14,
+                color: place.rating >= 4.4
+                    ? ThemeColors.brightGreen
+                    : ThemeColors.earthyGreen,
+              ),
+            ),
+            SizedBox(width: 5),
+            Text(
+              '(${place.userRatingsTotal}+)',
+              style: TextStyle(
+                color: ThemeColors.textGrey,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 5),
+        SizedBox(width: 5),
         Text(
-          place.rating.toStringAsFixed(1),
+          '\$' * place.priceLevel,
           style: TextStyle(
+            color: ThemeColors.textGrey,
             fontSize: 14,
-            color: place.rating >= 4.4
-                ? ThemeColors.brightGreen
-                : ThemeColors.earthyGreen,
           ),
         ),
-        const SizedBox(width: 5),
-        Expanded(
-          flex: 1,
+        SizedBox(width: 5),
+        Flexible(
           child: Text(
-            '(${place.userRatingsTotal}+)',
+            place.vendorType[0] ?? '',
             style: TextStyle(
               color: ThemeColors.textGrey,
               fontSize: 12,
             ),
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.right,
           ),
-        ),
-        Expanded(
-          child: Text(
-            '\$' * place.priceLevel,
-            style: TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 14,
-            ),
-          ),
-        ),
-        Text(
-          'Breakfast',
-          style: TextStyle(
-            color: ThemeColors.textGrey,
-            fontSize: 12,
-          ),
-          overflow: TextOverflow.ellipsis,
         ),
       ],
     );

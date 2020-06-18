@@ -13,7 +13,11 @@ class Place {
   final Map<String, dynamic> openingHours;
   final double latitude;
   final double longitude;
+
+  final List<String> vendorType;
   final List<String> features;
+  final List<String> foodType;
+
   final String mainPhoto;
   // Calculate distance from user with a method
   double _distanceFromUser;
@@ -23,7 +27,9 @@ class Place {
     @required this.name,
     this.address,
     this.rating,
+    this.vendorType,
     this.features,
+    this.foodType,
     this.userRatingsTotal,
     this.priceLevel,
     this.openingHours,

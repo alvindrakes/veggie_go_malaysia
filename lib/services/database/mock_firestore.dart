@@ -39,7 +39,8 @@ A team of global app developers have created this new app from scratch...
         priceLevel: 2,
         longitude: 100.12343,
         latitude: 3.84232,
-        features: ['Cosy', 'Casual', 'Good for kids'],
+        vendorType: ['Health Food'],
+        features: ['Cosy', 'Casual', 'Vegetarian options'],
         mainPhoto:
             'https://lh5.googleusercontent.com/p/AF1QipORDFR9HCVa9WOAVdBX3a8y5JnKLpFVmGN9GlTw=w203-h114-k-no',
       ),
@@ -51,7 +52,8 @@ A team of global app developers have created this new app from scratch...
         priceLevel: 1,
         longitude: 101.322545,
         latitude: 4.252534,
-        features: ['Delivery', 'Wifi', 'Air condition'],
+        vendorType: ['Vegetarian'],
+        features: ['Cosy', 'Casual', 'Vegetarian options'],
         mainPhoto:
             'https://lh5.googleusercontent.com/p/AF1QipOd22OTPsADGiRAAyYvjOco3vEFQpusOCpdXNj0=w203-h152-k-no',
       ),
@@ -71,6 +73,7 @@ A team of global app developers have created this new app from scratch...
         priceLevel: 1,
         longitude: 100.12343,
         latitude: 3.84232,
+        vendorType: ['Breakfast'],
         features: ['Cosy', 'Casual', 'Good for kids'],
         mainPhoto:
             'https://lh5.googleusercontent.com/p/AF1QipN2OAGcRlcgFfLa7Xxw-fEfZLCuVQDjBq0O-2t8=w203-h152-k-no',
@@ -83,7 +86,8 @@ A team of global app developers have created this new app from scratch...
         priceLevel: 2,
         longitude: 101.322545,
         latitude: 4.252534,
-        features: ['Cosy', 'Casual', 'Vegetarian options'],
+        vendorType: ['Vegetarian cafe & deli'],
+        features: ['Delivery', 'Wi-Fi', 'Air conditioning'],
         mainPhoto:
             'https://lh5.googleusercontent.com/p/AF1QipM9U5vwqMrzcp6Ya9WNMfNfwZB99S359TnZknIU=w203-h114-k-no',
       ),
@@ -101,7 +105,8 @@ A team of global app developers have created this new app from scratch...
           priceLevel: 2,
           longitude: 100.12343,
           latitude: 3.84232,
-          features: ['Cosy', 'Casual', 'Vegan'],
+          vendorType: ['Coffeeshop'],
+          features: ['Cosy', 'Casual', 'Good for kids'],
           mainPhoto:
               'https://lh5.googleusercontent.com/p/AF1QipMpcuLud85oim0rilm-bLKdrXpiDEnqRln8KIFh=w203-h203-k-no'),
       Place(
@@ -112,7 +117,8 @@ A team of global app developers have created this new app from scratch...
         priceLevel: 2,
         longitude: 101.322545,
         latitude: 4.252534,
-        features: ['Cosy', 'Casual', 'Vegetarian options'],
+        vendorType: ['Vegetarian'],
+        features: ['Vegetarian options', 'Groups', 'Good for kids'],
         mainPhoto:
             'https://lh5.googleusercontent.com/p/AF1QipNbxjxqROK-kQ2DIEXaLjIYS2bvAed8DjO9r7tr=w203-h114-k-no',
       ),
