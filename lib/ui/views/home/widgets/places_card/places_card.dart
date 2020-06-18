@@ -209,7 +209,7 @@ class _DescriptionRow extends StatelessWidget {
                 color: ThemeColors.textGrey,
               ),
               children: intersperse(
-                      TextSpan(text: _middotUnicode),
+                      TextSpan(text: ' $_middotUnicode '),
                       place.features
                           .map((String feature) => TextSpan(text: feature))
                           .toList())
