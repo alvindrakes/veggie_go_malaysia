@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
 import '../home_viewmodel.dart';
 import 'location_bar.dart';
 
@@ -11,7 +12,7 @@ class SearchBar extends ViewModelWidget<HomeViewModel> {
       title: Row(
         children: <Widget>[
           Expanded(child: LocationSelector()),
-          const SizedBox(width: 10),
+          const SizedBox(width: 20),
           GestureDetector(
             child: Image.asset(
               'assets/icons/filter.png',
@@ -19,6 +20,7 @@ class SearchBar extends ViewModelWidget<HomeViewModel> {
             ),
             onTap: () {},
           ),
+          const SizedBox(width: 10),
         ],
       ),
       pinned: true,

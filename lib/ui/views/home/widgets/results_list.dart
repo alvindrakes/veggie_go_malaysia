@@ -53,9 +53,12 @@ class ResultsListView extends StatelessWidget {
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: PlacesCard(
-                          showExtraInfo: resultType == PlacesResultType.nearest
-                              ? false
-                              : true,
+                          showExtraInfo: [
+                            PlacesResultType.nearest,
+                            PlacesResultType.popular
+                          ].contains(resultType)
+                              ? true
+                              : false,
                           showFavourite: resultType == PlacesResultType.popular
                               ? true
                               : false,
