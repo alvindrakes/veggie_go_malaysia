@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
+import 'package:veggie_go_malaysia/utils/intersperse.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../datamodels/place.dart';
@@ -195,30 +196,27 @@ class _DescriptionRow extends StatelessWidget {
 
   static const _middotUnicode = '\u22C5';
 
-  String _drawMiddot(int i, int featuresLength) {
-    if (i == featuresLength - 1) {
-      return '';
-    }
-
-    return '$_middotUnicode';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        for (int i = 0; i < place.features.length; i++)
-          Flexible(
-            child: Text(
-              '${place.features[i]} ${_drawMiddot(i, place.features.length)} ',
+        Expanded(
+          child: RichText(
+            overflow: TextOverflow.ellipsis,
+            text: TextSpan(
               style: TextStyle(
+                fontSize: 12,
                 color: ThemeColors.textGrey,
-                fontSize: 11,
               ),
-              overflow: TextOverflow.clip,
-              maxLines: 1,
+              children: intersperse(
+                      TextSpan(text: _middotUnicode),
+                      place.features
+                          .map((String feature) => TextSpan(text: feature))
+                          .toList())
+                  .toList(),
             ),
           ),
+        ),
       ],
     );
   }
