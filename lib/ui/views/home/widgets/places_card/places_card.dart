@@ -281,7 +281,7 @@ class _RatingInfoRow extends StatelessWidget {
                   ? ThemeColors.brightGreen
                   : ThemeColors.earthyGreen,
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 2.5),
             Text(
               place.rating.toStringAsFixed(1),
               style: TextStyle(
@@ -291,7 +291,7 @@ class _RatingInfoRow extends StatelessWidget {
                     : ThemeColors.earthyGreen,
               ),
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 2.5),
             Text(
               '(${place.userRatingsTotal}+)',
               style: TextStyle(
