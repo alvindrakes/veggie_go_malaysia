@@ -36,16 +36,7 @@ class PlacesCard extends StatelessWidget {
                       place: place,
                       showFavourite: showFavourite,
                     )
-                  : Container(
-                      height: 140,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(place.mainPhoto),
-                        ),
-                      ),
-                    ),
+                  : _PlaceCardImage(place: place),
               const SizedBox(height: 5.0),
               Text(
                 place.name,
@@ -66,6 +57,36 @@ class PlacesCard extends StatelessWidget {
   }
 }
 
+class _PlaceCardImage extends StatelessWidget {
+  const _PlaceCardImage({
+    Key key,
+    @required this.place,
+  }) : super(key: key);
+
+  final Place place;
+
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: place.documentID,
+      child: CachedNetworkImage(
+        imageUrl: place.mainPhoto,
+        imageBuilder: (context, imageProvider) => Container(
+          height: 140,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: imageProvider,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
+    );
+  }
+}
+
 class _ImageWithExtraInfo extends StatelessWidget {
   const _ImageWithExtraInfo({
     Key key,
@@ -82,23 +103,7 @@ class _ImageWithExtraInfo extends StatelessWidget {
       height: 154,
       child: Stack(
         children: <Widget>[
-          Hero(
-            tag: place.documentID,
-            child: CachedNetworkImage(
-              imageUrl: place.mainPhoto,
-              imageBuilder: (context, imageProvider) => Container(
-                height: 140,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: imageProvider,
-                  ),
-                ),
-              ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
-          ),
+          _PlaceCardImage(place: place),
           _ExtraInfoContainer(showFavourite: showFavourite),
         ],
       ),
@@ -205,11 +210,11 @@ class _DescriptionRow extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 11,
                 color: ThemeColors.textGrey,
               ),
               children: intersperse(
-                      TextSpan(text: _middotUnicode),
+                      TextSpan(text: ' $_middotUnicode '),
                       place.features
                           .map((feature) => TextSpan(text: feature))
                           .toList())
@@ -276,7 +281,7 @@ class _RatingInfoRow extends StatelessWidget {
                   ? ThemeColors.brightGreen
                   : ThemeColors.earthyGreen,
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 2.5),
             Text(
               place.rating.toStringAsFixed(1),
               style: TextStyle(
@@ -286,7 +291,7 @@ class _RatingInfoRow extends StatelessWidget {
                     : ThemeColors.earthyGreen,
               ),
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 2.5),
             Text(
               '(${place.userRatingsTotal}+)',
               style: TextStyle(
