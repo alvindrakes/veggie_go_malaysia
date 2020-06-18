@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/utils/intersperse.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../datamodels/place.dart';
+import '../../../../../utils/intersperse.dart';
 import 'places_card_viewmodel.dart';
 
 class PlacesCard extends StatelessWidget {
@@ -211,7 +211,7 @@ class _DescriptionRow extends StatelessWidget {
               children: intersperse(
                       TextSpan(text: _middotUnicode),
                       place.features
-                          .map((String feature) => TextSpan(text: feature))
+                          .map((feature) => TextSpan(text: feature))
                           .toList())
                   .toList(),
             ),
