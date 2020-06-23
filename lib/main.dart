@@ -42,8 +42,12 @@ class App extends StatelessWidget {
       theme: CupertinoThemeData(
         primaryColor: ThemeColors.brightGreen,
         scaffoldBackgroundColor: ThemeColors.background,
+        barBackgroundColor: ThemeColors.brightGreen,
         textTheme: CupertinoTextThemeData(
-          textStyle: TextStyle(fontFamily: 'Lato'),
+          textStyle: TextStyle(
+            fontFamily: 'Lato',
+            color: CupertinoColors.black,
+          ),
         ),
       ),
     );
