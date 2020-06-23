@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../constants/colors.dart';
+import 'package:flutter/material.dart';
 
 class CustomListTile extends StatefulWidget {
   final Widget leading;
@@ -29,7 +28,8 @@ class _StatefulStateCupertino extends State<CustomListTile> {
       onTap: widget.onTap,
       child: Container(
         height: 50,
-        color: ThemeColors.background,
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: Row(
           children: <Widget>[
             widget.leading,

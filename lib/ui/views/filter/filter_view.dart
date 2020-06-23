@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:veggie_go_malaysia/app/router.dart';
-import 'package:veggie_go_malaysia/ui/views/sort_view.dart';
 
+import '../../../app/router.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/cuisine_types.dart';
 import '../../shared_widgets/custom_list_tile.dart';
@@ -35,30 +34,30 @@ class FilterView extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _UpperListTile(),
-                    Text(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _UpperListTile(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Text(
                       "Cultural",
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    for (String cuisine in Cuisine.types)
-                      CustomListTile(
-                        leading: Text(cuisine),
-                        trailing: Icon(
-                          Icons.crop_square,
-                        ),
+                  ),
+                  const SizedBox(height: 5),
+                  for (String cuisine in Cuisine.types)
+                    CustomListTile(
+                      leading: Text(cuisine),
+                      trailing: Icon(
+                        Icons.crop_square,
                       ),
-                    SizedBox(height: 50),
-                  ],
-                ),
+                    ),
+                  SizedBox(height: 50),
+                ],
               ),
             ),
             DoneButton(),
