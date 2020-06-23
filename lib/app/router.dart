@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/home/widgets/text_search/text_search.dart';
 import '../ui/views/place_details/place_details_view.dart';
+import '../ui/views/sort_view.dart';
 import '../ui/views/startup/startup_view.dart';
 
 abstract class Routes {
@@ -11,6 +12,8 @@ abstract class Routes {
   static const homeViewRoute = '/home';
   static const searchViewRoute = '/search';
   static const placeDetailsRoute = '/restaurant_details';
+  static const filterViewRoute = '/filter';
+  static const sortViewRoute = '/sort';
 }
 
 class Router {
@@ -25,6 +28,10 @@ class Router {
         return MaterialPageRoute<dynamic>(
           builder: (context) => HomeView(),
           settings: settings,
+        );
+      case Routes.sortViewRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (context) => SortView(),
         );
       case Routes.searchViewRoute:
         return CupertinoPageRoute<dynamic>(

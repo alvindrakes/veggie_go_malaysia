@@ -6,6 +6,7 @@ import '../../../app/router.dart';
 import '../../../datamodels/announcement.dart';
 import '../../../datamodels/place.dart';
 import '../../../services/database/mock_firestore.dart';
+import '../filter/filter_view.dart';
 
 enum Country { malaysia, singapore }
 enum Mode { restaurants, stores }
@@ -74,5 +75,12 @@ class HomeViewModel extends FutureViewModel {
     _recommendedPlaces = await _firestoreService.getRecommendedPlaces();
     _popularPlaces = await _firestoreService.getPopularPlaces();
     setBusy(false);
+  }
+
+  void openFilterModal() {
+    _navigationService.navigateWithTransition(
+      FilterView(),
+      transition: "downToUp",
+    );
   }
 }
