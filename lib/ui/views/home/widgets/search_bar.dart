@@ -18,7 +18,7 @@ class SearchBar extends ViewModelWidget<HomeViewModel> {
               'assets/icons/filter.png',
               height: 20,
             ),
-            onTap: () {},
+            onTap: () => model.openFilterModal(),
           ),
           const SizedBox(width: 10),
         ],
