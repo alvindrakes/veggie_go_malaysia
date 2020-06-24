@@ -11,11 +11,11 @@ class DoneButton extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: ThemeColors.background,
-        padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 10.0),
+        padding: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 10.0),
         child: TouchableOpacity(
           activeOpacity: 0.4,
           child: Container(
-            height: 40,
+            height: 45,
             decoration: BoxDecoration(
               color: ThemeColors.brightGreen,
               borderRadius: BorderRadius.circular(4.0),
