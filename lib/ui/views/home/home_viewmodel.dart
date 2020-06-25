@@ -1,30 +1,32 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:veggie_go_malaysia/app/locator.dart';
-import 'package:veggie_go_malaysia/app/router.dart';
-import 'package:veggie_go_malaysia/datamodels/announcement.dart';
-import 'package:veggie_go_malaysia/datamodels/place.dart';
-import 'package:veggie_go_malaysia/services/database/mock_firestore.dart';
 
-enum Country { Malaysia, Singapore }
-enum Mode { Restaurants, Stores }
+import '../../../app/locator.dart';
+import '../../../app/router.dart';
+import '../../../datamodels/announcement.dart';
+import '../../../datamodels/place.dart';
+import '../../../services/database/mock_firestore.dart';
+import '../filter/filter_view.dart';
+
+enum Country { malaysia, singapore }
+enum Mode { restaurants, stores }
 
 class HomeViewModel extends FutureViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final MockFirestore _firestoreService = locator<MockFirestore>();
 
   Country currentCountry =
-      Country.Malaysia; // TODO: use location or shared preferences
-  Mode currentMode = Mode.Restaurants;
+      Country.malaysia; // TODO: use location or shared preferences
+  Mode currentMode = Mode.restaurants;
 
   void toggleMode() async {
     setBusy(true);
     switch (currentMode) {
-      case Mode.Restaurants:
-        currentMode = Mode.Stores;
+      case Mode.restaurants:
+        currentMode = Mode.stores;
         break;
-      case Mode.Stores:
-        currentMode = Mode.Restaurants;
+      case Mode.stores:
+        currentMode = Mode.restaurants;
         break;
     }
     notifyListeners();
@@ -37,11 +39,11 @@ class HomeViewModel extends FutureViewModel {
   void switchCountry() async {
     setBusy(true);
     switch (currentCountry) {
-      case Country.Malaysia:
-        currentCountry = Country.Singapore;
+      case Country.malaysia:
+        currentCountry = Country.singapore;
         break;
-      case Country.Singapore:
-        currentCountry = Country.Malaysia;
+      case Country.singapore:
+        currentCountry = Country.malaysia;
         break;
     }
     notifyListeners();
@@ -60,8 +62,6 @@ class HomeViewModel extends FutureViewModel {
   List<Place> get recommendedPlaces => _recommendedPlaces;
   List<Place> _popularPlaces = <Place>[];
   List<Place> get popularPlaces => _popularPlaces;
-  List<Place> _budgetPlaces = <Place>[];
-  List<Place> get budgetPlaces => _budgetPlaces;
 
   void navigateToSearch() async {
     await _navigationService.navigateTo(Routes.searchViewRoute);
@@ -74,7 +74,13 @@ class HomeViewModel extends FutureViewModel {
     _nearestPlaces = await _firestoreService.getNearestPlaces();
     _recommendedPlaces = await _firestoreService.getRecommendedPlaces();
     _popularPlaces = await _firestoreService.getPopularPlaces();
-    _budgetPlaces = await _firestoreService.getBudgetPlaces();
     setBusy(false);
+  }
+
+  void openFilterModal() {
+    _navigationService.navigateWithTransition(
+      FilterView(),
+      transition: "downToUp",
+    );
   }
 }

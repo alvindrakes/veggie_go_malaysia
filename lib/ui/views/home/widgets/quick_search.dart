@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class QuickSearch extends StatelessWidget {
   static Widget _customIcon(Color color, String text, Image image) {
@@ -24,13 +25,13 @@ class QuickSearch extends StatelessWidget {
   }
 
   final List<List<dynamic>> _quickIcons = [
-    ['Japanese', Image.asset('assets/images/japanese_food.png')],
-    ['Chinese', Image.asset('assets/images/chinese_food.png')],
-    ['Western', Image.asset('assets/images/western_food.png')],
-    ['Indian', Image.asset('assets/images/indian_food.png')],
-    ['Thai', Image.asset('assets/images/thai_food.png')],
-    ['Korean', Image.asset('assets/images/korean_food.png')],
-    ['Mixed', Image.asset('assets/images/fusion_food.png')],
+    ['quick_japanese'.tr(), Image.asset('assets/images/japanese_food.png')],
+    ['quick_chinese'.tr(), Image.asset('assets/images/chinese_food.png')],
+    ['quick_western'.tr(), Image.asset('assets/images/western_food.png')],
+    ['quick_indian'.tr(), Image.asset('assets/images/indian_food.png')],
+    ['quick_thai'.tr(), Image.asset('assets/images/thai_food.png')],
+    ['quick_korean'.tr(), Image.asset('assets/images/korean_food.png')],
+    ['quick_mixed'.tr(), Image.asset('assets/images/fusion_food.png')],
   ];
 
   @override

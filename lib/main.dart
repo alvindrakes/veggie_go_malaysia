@@ -1,48 +1,52 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:veggie_go_malaysia/app/locator.dart';
-import 'package:veggie_go_malaysia/app/router.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
+import 'app/locator.dart';
+import 'app/router.dart';
+import 'constants/colors.dart';
 
 void main() {
   Logger.level = Level.info;
 
   setupLocator();
-  runApp(App());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
+      path: 'assets/languages',
+      useOnlyLangCode: true,
+      startLocale:
+          Locale('zh', 'CN'), // just to test whether localization is working
+      fallbackLocale: Locale('en', 'US'),
+      child: App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: 'Veggie Go Malaysia',
-      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-        DefaultMaterialLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
-      ],
+      title: "Veggie Go Malaysia",
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       initialRoute: Routes.startupViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: CupertinoThemeData(
         primaryColor: ThemeColors.brightGreen,
-        barBackgroundColor: ThemeColors.background,
         scaffoldBackgroundColor: ThemeColors.background,
+        barBackgroundColor: ThemeColors.brightGreen,
         textTheme: CupertinoTextThemeData(
-          navActionTextStyle: TextStyle(
-            color: ThemeColors.brightGreen,
-          ),
-          navTitleTextStyle: TextStyle(
-            color: ThemeColors.brightGreen,
-          ),
           textStyle: TextStyle(
             fontFamily: 'Lato',
-            fontWeight: FontWeight.w500,
+            color: CupertinoColors.black,
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:veggie_go_malaysia/ui/shared_widgets/list_item.dart';
+import 'list_item.dart';
 
 class ShimmerList extends StatelessWidget {
   const ShimmerList({

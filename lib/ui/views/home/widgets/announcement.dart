@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:veggie_go_malaysia/datamodels/announcement.dart';
+
+import '../../../../datamodels/announcement.dart';
 
 class AnnouncementCarousel extends StatelessWidget {
   final List<Announcement> announcements;
@@ -11,7 +12,7 @@ class AnnouncementCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
       itemCount: announcements.length,
-      itemBuilder: (BuildContext context, int itemIndex) {
+      itemBuilder: (context, itemIndex) {
         var item = announcements[itemIndex];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
@@ -45,6 +46,8 @@ class AnnouncementCarousel extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(
                             height: 5,
@@ -53,6 +56,7 @@ class AnnouncementCarousel extends StatelessWidget {
                             item.previewContent,
                             style: TextStyle(fontSize: 14, fontFamily: 'Lato'),
                             overflow: TextOverflow.clip,
+                            maxLines: 3,
                           ),
                         ],
                       ),

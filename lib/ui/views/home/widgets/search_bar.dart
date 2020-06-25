@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/ui/views/home/home_viewmodel.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/location_bar.dart';
+
+import '../home_viewmodel.dart';
+import 'location_bar.dart';
 
 class SearchBar extends ViewModelWidget<HomeViewModel> {
   @override
@@ -11,14 +12,15 @@ class SearchBar extends ViewModelWidget<HomeViewModel> {
       title: Row(
         children: <Widget>[
           Expanded(child: LocationSelector()),
-          const SizedBox(width: 10),
-          IconButton(
-            icon: Image.asset(
+          const SizedBox(width: 20),
+          GestureDetector(
+            child: Image.asset(
               'assets/icons/filter.png',
               height: 20,
             ),
-            onPressed: () {},
+            onTap: () => model.openFilterModal(),
           ),
+          const SizedBox(width: 10),
         ],
       ),
       pinned: true,

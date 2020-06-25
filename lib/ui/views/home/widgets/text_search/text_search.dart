@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:veggie_go_malaysia/constants/colors.dart';
-import 'package:veggie_go_malaysia/ui/views/home/widgets/text_search/text_search_viewmodel.dart';
+
+import '../../../../../constants/colors.dart';
+import 'text_search_viewmodel.dart';
 
 class SearchView extends StatefulWidget {
   @override
@@ -14,10 +15,10 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SearchViewModel>.reactive(
       viewModelBuilder: () => SearchViewModel(),
-      builder: (context, model, child) => Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
+      builder: (context, model, child) => SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Column(
             children: <Widget>[
               TextField(
                 style: TextStyle(fontSize: 18),

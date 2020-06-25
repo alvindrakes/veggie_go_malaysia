@@ -1,0 +1,1 @@
+enum PlacesResultType {recommended, popular, nearest}
